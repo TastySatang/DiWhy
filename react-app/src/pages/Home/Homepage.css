@@ -108,14 +108,47 @@
   top: 49px;
   right: 150px;
   color: white;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 22px;
   text-align: center;
 }
 
+.message__hook {
+  font-weight: 700;
+}
+
 .message__signup--button {
+  font-size: 18px;
   background-color: #f0a428;
   border: 1px solid#e2961b;
   border-radius: 6px;
   color: white;
+  width: 200px;
+  height: 40px;
+}
+
+.home__reason {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home__reason > section {
+  margin: 50px auto 0 auto;
+}
+
+section h2 {
+  color: #333333;
+}
+
+section p {
+  width: 80%;
+  margin: auto auto 40px;
+}
+
+.reason__divider {
+  width: 90px;
+  border-bottom: 1px solid #D5D5D5;
+  margin-bottom: 40px;
 }
