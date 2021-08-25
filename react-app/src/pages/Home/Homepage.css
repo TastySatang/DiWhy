@@ -90,8 +90,32 @@
   }
 }
 
-
-
 .advert__img {
   width: 100%;
+}
+
+.home__advert {
+  display: block;
+  position: relative;
+}
+
+.advert__img {
+  z-index: -1px;
+}
+
+.advert__message {
+  position: absolute;
+  top: 49px;
+  right: 150px;
+  color: white;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.message__signup--button {
+  background-color: #f0a428;
+  border: 1px solid#e2961b;
+  border-radius: 6px;
+  color: white;
 }

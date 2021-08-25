@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 import back from './image1.jpg'
 import bottom from './botImg.jpg'
 import './Homepage.css'
@@ -36,8 +36,15 @@ const HomePage = () => {
         </div>
       </div>
       <div className='home__advert'>
-        <div className='advert__img'>
+        <div className='advert'>
           <img className='advert__img' src={bottom} alt='bottomAd' />
+          <div className='advert__message'>
+            <p className='message__description'>What are you waiting for?</p>
+            <p className='message__hook'>Get out there and ruin something!</p>
+            <Link className='message__signup' to='/sign-up'>
+              <button className='message__signup--button'>Create a DiWhy!</button>
+            </Link>
+          </div>
         </div>
 
       </div>
