@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -28,23 +28,15 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
+        <Route path='/' exact={true} >
+          <h1>Root Page</h1>
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/login' exact={true} component={LoginForm} />
+        <Route path='/sign-up' exact={true} component={SignUpForm} />
+        <ProtectedRoute path='/users/:userId' exact={true} component={User} />
+        <ProtectedRoute path='/users' exact={true} component={UsersList} />
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
