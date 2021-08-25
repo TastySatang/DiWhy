@@ -44,6 +44,10 @@ html, body {
   border: none;
 }
 
+.right__Logout {
+  cursor: pointer;
+}
+
 .botnavbar {
   height: 72px;
   display: flex;
