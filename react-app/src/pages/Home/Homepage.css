@@ -35,7 +35,7 @@
 
 .Home__textContent {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-left: 2.5vw;
   margin-right: 2.5vw;
   flex-wrap: wrap;
@@ -47,7 +47,7 @@
   display: block;
   max-width: 100%;
   padding-top: 30px;
-  margin-right: 5vw;
+  margin-right: 4vw;
   margin-bottom: 30px;
 }
 
@@ -56,4 +56,42 @@
   line-height: 1.5;
   min-width: 300px;
   max-width: 300px;
+}
+
+
+@media screen and (min-width: 1600px) {
+  .Home__textContent {
+    justify-content: center;
+  }
+
+  .textContent__box {
+    margin-right: 135px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .Home__textContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .textContent__box {
+    margin-bottom: 0;
+  }
+
+  #content__p {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .imageContent__text {
+    width: 45vw;
+  }
+}
+
+
+
+.advert__img {
+  width: 100%;
 }

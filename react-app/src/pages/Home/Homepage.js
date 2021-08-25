@@ -1,7 +1,9 @@
 import React from 'react';
 
 import back from './image1.jpg'
+import bottom from './botImg.jpg'
 import './Homepage.css'
+
 
 const HomePage = () => {
 
@@ -33,7 +35,10 @@ const HomePage = () => {
           <p id='content__p'>Making things makes people happy. We can't prove it, but we know it to be true. Find your happy place, and join one of the friendliest online communities anywhere.</p>
         </div>
       </div>
-      <div>
+      <div className='home__advert'>
+        <div className='advert__img'>
+          <img className='advert__img' src={bottom} alt='bottomAd' />
+        </div>
 
       </div>
     </div>
