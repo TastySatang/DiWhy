@@ -1,0 +1,154 @@
+.Home__imageContent {
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.imageContent__inner {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.imageContent__text {
+  width: 540px;
+  color: white;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin-left: 20px;
+}
+
+.imageContent__text > h1 {
+  font-size: 40px;
+  font-family: Arial,sans-serif;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+}
+
+.imageContent__text > p {
+  line-height: 1.5;
+  font-family: Arial,sans-serif;
+}
+
+.Home__textContent {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  flex-wrap: wrap;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.textContent__box {
+  display: block;
+  max-width: 100%;
+  padding-top: 30px;
+  margin-right: 4vw;
+  margin-bottom: 30px;
+}
+
+#content__p {
+  color: #555555;
+  line-height: 1.5;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+
+@media screen and (min-width: 1600px) {
+  .Home__textContent {
+    justify-content: center;
+  }
+
+  .textContent__box {
+    margin-right: 135px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .Home__textContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .textContent__box {
+    margin-bottom: 0;
+  }
+
+  #content__p {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .imageContent__text {
+    width: 45vw;
+  }
+}
+
+.advert__img {
+  width: 100%;
+}
+
+.home__advert {
+  display: block;
+  position: relative;
+}
+
+.advert__img {
+  z-index: -1px;
+}
+
+.advert__message {
+  position: absolute;
+  top: 49px;
+  right: 150px;
+  color: white;
+  font-size: 24px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.message__hook {
+  font-weight: 700;
+}
+
+.message__signup--button {
+  font-size: 18px;
+  background-color: #f0a428;
+  border: 1px solid#e2961b;
+  border-radius: 6px;
+  color: white;
+  width: 200px;
+  height: 40px;
+}
+
+.home__reason {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home__reason > section {
+  margin: 50px auto 0 auto;
+}
+
+section h2 {
+  color: #333333;
+}
+
+section p {
+  width: 80%;
+  margin: auto auto 40px;
+}
+
+.reason__divider {
+  width: 90px;
+  border-bottom: 1px solid #D5D5D5;
+  margin-bottom: 40px;
+}
