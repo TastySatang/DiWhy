@@ -1,13 +1,15 @@
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../store/session';
 
+import robot from './robot.png'
 import './NavBar.css'
 
 const NavBar = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const user = useSelector(state => state.session.user)
 
   const onLogout = async (e) => {
@@ -55,14 +57,26 @@ const NavBar = () => {
   }
 
   return (
-    <nav className='topnavbar'>
-      <div className='topnavbar__left'>
-        <NavLink className='NavLink' to='/' exact={true} activeClassName='active'>
-          <i className="fas fa-home"></i>
-        </NavLink>
+    <div>
+      <nav className='topnavbar'>
+        <div className='topnavbar__left'>
+          <NavLink className='NavLink' to='/' exact={true} activeClassName='active'>
+            <i className="fas fa-home"></i>
+          </NavLink>
+        </div>
+        {auth}
+      </nav>
+      <div className='botnavbar'>
+        <div className='botnavbar__left'>
+          <NavLink className='NavLink branding' to='/' exact>
+            <img className='botnav__logo' src={robot} alt={robot} />
+            <span>DiWHY</span>
+          </NavLink>
+        </div>
+
       </div>
-      {auth}
-    </nav>
+
+    </div>
   );
 }
 
