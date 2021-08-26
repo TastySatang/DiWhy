@@ -43,51 +43,48 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
+    <div className='wrapper__login'>
+      <div className='login__container'>
+        <form className='login__form' onSubmit={onSignUp}>
+          <input className='form__textinput'
+            placeholder='Username'
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+          <input className='form__textinput'
+            placeholder='Email'
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+          <input className='form__textinput'
+            placeholder='Password'
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+          <input className='form__textinput'
+            placeholder='Confirm Password'
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+          <div className='error__container'>
+            {errors.map((error, ind) => (
+              <div className='errors' key={ind}>{error}</div>
+            ))}
+          </div>
+          <button className='form__button' type='submit'>Sign Up</button>
+        </form>
       </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <div className='error__container'>
-        {errors.map((error, ind) => (
-          <div className='errors' key={ind}>{error}</div>
-        ))}
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div>
+
   );
 };
 

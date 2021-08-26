@@ -37,6 +37,7 @@
 }
 
 .form__button {
+  color: white;
   padding: 11px 19px;
   border-radius: 6px;
   margin-bottom: 20px;
