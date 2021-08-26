@@ -76,6 +76,7 @@
   font-weight: 700;
   line-height: 14px;
   vertical-align: baseline;
+  border-radius: 6px;
 }
 
 .errors {
