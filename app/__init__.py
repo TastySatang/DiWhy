@@ -32,7 +32,8 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
 db.init_app(app)
-Migrate(app, db)
+# https://github.com/miguelgrinberg/Flask-Migrate/issues/281
+Migrate(app, db, compare_type=True)
 
 # Application Security
 CORS(app)
