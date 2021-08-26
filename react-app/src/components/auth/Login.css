@@ -1,5 +1,9 @@
+#root {
+  height: calc(100vh - 3rem);
+}
+
 .wrapper__login {
-  height: 940px;
+  height: calc(100vh - 7rem);
   width: 100%;
   background-position: center center;
   background-attachment: fixed;
@@ -10,7 +14,7 @@
 .login__container {
   background: rgba(34,34,34,.25);
   position: relative;
-  height: 940px;
+  height: 100%;
   width: 400px;
   left: 70px;
   display: flex;

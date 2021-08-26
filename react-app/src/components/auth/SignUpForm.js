@@ -14,9 +14,23 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const validateEmail = (mail) => {
+    const regMail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return regMail.test(String(mail).toLowerCase())
+  }
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password !== repeatPassword) {
+      setErrors(['The Password and confirm Password do not match!'])
+    }
+
+    else if (!validateEmail(email)) {
+      setErrors(['Please enter a valid Email'])
+    }
+
+    else {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
