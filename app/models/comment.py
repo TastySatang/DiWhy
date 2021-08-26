@@ -1,7 +1,7 @@
 from .db import db
 from sqlalchemy.sql import func
 
-class Comment(db.model):
+class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)

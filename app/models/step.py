@@ -1,6 +1,6 @@
 from .db import db
 
-class Step(db.model):
+class Step(db.Model):
     __tablename__ = 'steps'
 
     id = db.Column(db.Integer, primary_key=True)

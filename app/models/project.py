@@ -1,7 +1,7 @@
 from .db import db
 from sqlalchemy.sql import func
 
-class Project(db.model):
+class Project(db.Model):
     __tablename__ ='projects'
 
     id = db.Column(db.Integer, primary_key=True)
