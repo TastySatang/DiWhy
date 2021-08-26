@@ -45,11 +45,6 @@ const SignUpForm = () => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
         <label>User Name</label>
         <input
           type='text'
@@ -85,6 +80,11 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
+      </div>
+      <div className='error__container'>
+        {errors.map((error, ind) => (
+          <div className='errors' key={ind}>{error}</div>
+        ))}
       </div>
       <button type='submit'>Sign Up</button>
     </form>

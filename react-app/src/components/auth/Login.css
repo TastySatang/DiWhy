@@ -51,8 +51,6 @@
   display: block;
 }
 
-
-
 .login__container__p {
   color: white;
   text-decoration: none;
@@ -63,3 +61,20 @@
   color: white;
   margin-left: 10px;
 }
+
+.error__container {
+  color: white;
+  background-color: #b94a48;
+  width: 334px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  vertical-align: baseline;
+}
+
+.errors {
+  padding: 2px 4px;
+}
+
+

@@ -51,9 +51,11 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+          <div className='error__container'>
+            {errors.map((error, ind) => (
+              <div className='errors' key={ind}>{error}</div>
+            ))}
+          </div>
           <button className='form__button' type='submit'>Login</button>
         </form>
         <p className='container__p login__container__p'>New to DiWhy?
