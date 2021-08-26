@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
+
+import signupimg from './signup.jpg'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,7 +45,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='wrapper__login'>
+    <div className='wrapper__login' style={{ backgroundImage: `url(${signupimg})` }}>
       <div className='login__container'>
         <form className='login__form' onSubmit={onSignUp}>
           <input className='form__textinput'
@@ -82,6 +84,9 @@ const SignUpForm = () => {
           </div>
           <button className='form__button' type='submit'>Sign Up</button>
         </form>
+        <p className='container__p login__container__p'>Already have an account?
+          <Link className='login__container__link' to='/login'>Log In »</Link>
+        </p>
       </div>
     </div>
 
