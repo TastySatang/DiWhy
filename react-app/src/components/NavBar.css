@@ -59,6 +59,7 @@ html, body {
 
 .botnavbar__left {
   display: flex;
+  align-items: center;
 }
 
 .botnav__logo {
@@ -73,4 +74,20 @@ html, body {
   min-width: 200;
   font-size: 22px;
   font-weight: 700;
+  margin-right: 20px;
+}
+
+.NavBtn {
+  text-align: center;
+  position: relative;
+  margin: 0 5px;
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  margin: 0 5px;
+  font-size: 14px;
+  color: #333;
 }

@@ -71,6 +71,9 @@ const NavBar = () => {
             <img className='botnav__logo' src={robot} alt={robot} />
             <span>DiWHY</span>
           </NavLink>
+          <NavLink className='NavLink' to='/projects'>
+            <button className='NavBtn'>Projects</button>
+          </NavLink>
         </div>
 
       </div>
