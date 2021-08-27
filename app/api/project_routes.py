@@ -57,7 +57,7 @@ def projectPost():
 
 
 # update project
-@project_routes.route("/<int:id>")
+@project_routes.route("/<int:id>", methods=["PUT"])
 def projectPut(id):
     form = ProjectForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -72,7 +72,7 @@ def projectPut(id):
 
 
 # delete project
-@project_routes.route("/<id>")
+@project_routes.route("/<int:id>", methods=["DELETE"])
 def projectDelete(id):
     project = Project.query.filter(Project.id == id).first()
     db.session.delete(project)
