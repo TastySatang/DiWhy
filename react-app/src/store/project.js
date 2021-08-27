@@ -28,7 +28,7 @@ export const getProject = (id) => async dispatch => {
 
   if (res.ok) {
     const project = await res.json()
-    dispatch(setProject(projects))
+    dispatch(setProject(project))
     return project
   } else {
     return ['An error has occurred. Please try again.']
