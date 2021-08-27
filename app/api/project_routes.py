@@ -17,6 +17,12 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+# health
+@project_routes.route("/health")
+def health():
+    return {"health": "OK"}
+
+
 # get all projects:
 @project_routes.route("/")
 def projectsGet():
@@ -72,9 +78,3 @@ def projectDelete(id):
     db.session.delete(project)
     db.session.commit()
     return {"projects": id}
-
-
-# health
-@project_routes.route("/health")
-def health():
-    return {"health": "OK"}
