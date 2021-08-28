@@ -1,0 +1,39 @@
+@media screen and (min-width: 1720px) {
+  .project-list-wrapper {
+    width: 1634px;
+  }
+}
+@media screen and (min-width: 1388px) and (max-width: 1719px){
+  .project-list-wrapper {
+    width: 1302px;
+  }
+}
+@media screen and (max-width: 1387px) {
+  .project-list-wrapper {
+    width: 970px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .project-list-wrapper {
+    width: 650px;
+  }
+}
+
+.project-list-wrapper {
+  margin: 0 auto;
+}
+
+
+.project-wrapper {
+  min-width: 306px;
+  width: 306px;
+  margin: 10px 10px 20px;
+  border-radius: 4px;
+}
+
+.project-thumbnail {
+  max-width: 100%;
+  border-radius: 4px 4px 0 0;
+  vertical-align: middle;
+  border: 0;
+}
