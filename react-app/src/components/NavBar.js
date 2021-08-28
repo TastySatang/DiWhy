@@ -75,9 +75,14 @@ const NavBar = () => {
             <button className='NavBtn'>Projects</button>
           </NavLink>
         </div>
-
       </div>
+      <div className='botnavbar__right'>
+        {user && (
+          <div>
 
+          </div>
+        )}
+      </div>
     </div>
   );
 }
