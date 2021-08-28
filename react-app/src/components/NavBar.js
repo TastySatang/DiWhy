@@ -75,13 +75,22 @@ const NavBar = () => {
             <button className='NavBtn'>Projects</button>
           </NavLink>
         </div>
-      </div>
-      <div className='botnavbar__right'>
-        {user && (
-          <div>
-
-          </div>
-        )}
+        <div className='botnavbar__right'>
+          {user ? (
+            <div>
+              <NavLink className='NavLink' to='/projects/new'>
+                PUBLISH
+              </NavLink>
+            </div>
+          ) :
+            (
+              <div>
+                <NavLink className='NavLink' to='/login'>
+                  PUBLISH
+                </NavLink>
+              </div>
+            )}
+        </div>
       </div>
     </div>
   );

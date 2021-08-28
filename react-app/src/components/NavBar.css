@@ -51,6 +51,7 @@ html, body {
 .botnavbar {
   height: 72px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #EEEEEE;
   border-bottom: 1px solid #CCCCCC;
