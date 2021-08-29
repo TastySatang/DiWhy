@@ -32,7 +32,11 @@ export default function ProjectPage() {
         </div>
       </header>
       <div className='content'>
-
+        <section className='project__intro'>
+          <div className='project__thumb'>
+            <img src={project?.imgUrl}></img>
+          </div>
+        </section>
       </div>
     </article>
   )
