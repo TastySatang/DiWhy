@@ -43,7 +43,7 @@ export default function ProjectPage() {
             return (
               <div className='step__wrapper'>
                 <div key='idx' className='intro__step'>
-                  <h2 className='step__title'>Step {idx}: {step.title}</h2>
+                  <h2 className='step__title'>{step.title}</h2>
                   {step.image && (
                     <div className='step__image__wrapper'>
                       <img className='step__image project__image' src={step.image} />
