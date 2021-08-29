@@ -87,7 +87,7 @@ export const deleteProject = id => async dispatch => {
   })
 
   if (res.ok) {
-    await dispatch(deleteProject(id));
+    await dispatch(removeProject(id));
     return res
   } else {
     return ['An error has occured. Please try again']

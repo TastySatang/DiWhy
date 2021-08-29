@@ -12,7 +12,7 @@ export default function ProjectPage() {
 
   useEffect(() => {
     dispatch(getProject(id))
-  }, [dispatch,])
+  }, [dispatch, id])
 
   const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
   const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
