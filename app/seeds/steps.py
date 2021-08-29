@@ -2,6 +2,13 @@ from app.models import db, Step
 
 
 def seed_steps():
+    zero = Step(
+        index=0,
+        title="Intro + Supplies",
+        instruction="This is how to make a great car seat your granma would definitely enjoy!",
+        projectId=1,
+    )
+
     one = Step(
         index=1,
         title="set up",
@@ -17,6 +24,7 @@ def seed_steps():
         projectId=1,
     )
 
+    db.session.add(zero)
     db.session.add(one)
     db.session.add(two)
     db.session.commit()

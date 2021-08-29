@@ -11,6 +11,10 @@
 
 .project__thumb {
   text-align: center;
+<<<<<<< HEAD
+=======
+  margin-bottom: 30px;
+>>>>>>> main
 }
 
 .content > section {
@@ -19,3 +23,14 @@
   margin-right: auto;
   width: 80%;
 }
+<<<<<<< HEAD
+=======
+
+.section__title {
+  text-align: center;
+}
+
+.section__instruction {
+  text-align: left;
+}
+>>>>>>> main

@@ -32,11 +32,31 @@ export default function ProjectPage() {
         </div>
       </header>
       <div className='content'>
+<<<<<<< HEAD
         <section className='project__intro'>
+=======
+        <section className='project__intro step'>
+>>>>>>> main
           <div className='project__thumb'>
             <img src={project?.imgUrl}></img>
           </div>
         </section>
+<<<<<<< HEAD
+=======
+        <section>
+          {project?.steps.map((step, idx) => {
+
+            return (
+              <div key='idx' className='intro__step'>
+                <h1 className='section__title'>Step {idx}: {step.title}</h1>
+                {project.image && (<img src={project.image} />)}
+                <p className='section__instruction'>{step.instruction}</p>
+              </div>
+            )
+          })}
+
+        </section>
+>>>>>>> main
       </div>
     </article>
   )
