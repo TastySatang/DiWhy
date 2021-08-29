@@ -21,10 +21,33 @@
   width: 80%;
 }
 
-.section__title {
+.step__title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.project__image {
+  border-radius: 4px;
+}
+
+.step__image__wrapper{
   text-align: center;
 }
 
-.section__instruction {
+.step__body {
+  font-family: 'myriad-pro', helvetica, arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.65;
+  color: #555;
   text-align: left;
+  word-wrap: break-word;
+}
+
+.step__divider {
+  width: 100px;
+  border-bottom: 1px solid #D6D6D6;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
 }
