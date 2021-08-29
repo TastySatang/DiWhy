@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './pages/Home/Homepage';
 import ProjectsPage from './pages/Projects/projects';
+import ProjectPage from './pages/Project/project';
 import { authenticate } from './store/session';
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
         <Route path='/login' exact={true} component={LoginForm} />
         <Route path='/sign-up' exact={true} component={SignUpForm} />
         <Route path='/projects' exact component={ProjectsPage} />
+        <Route path='/projects/new' exact />
+        <Route path='/projects/:id' exact component={ProjectPage} />
         <ProtectedRoute path='/users/:userId' exact={true} component={User} />
         <ProtectedRoute path='/users' exact={true} component={UsersList} />
       </Switch>
