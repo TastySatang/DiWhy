@@ -1,0 +1,9 @@
+.project__form__wrapper {
+  border: 1px solid #C9CDCF;
+  border-radius: 9px;
+  margin-top: 25px;
+  width: 1016px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100px;
+}

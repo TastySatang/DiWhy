@@ -36,7 +36,7 @@ function App() {
         <Route path='/login' exact={true} component={LoginForm} />
         <Route path='/sign-up' exact={true} component={SignUpForm} />
         <Route path='/projects' exact component={ProjectsPage} />
-        <Route path='/projects/new' exact component={NewProject} />
+        <ProtectedRoute path='/projects/new' exact component={NewProject} />
         <Route path='/projects/:id' exact component={ProjectPage} />
         <ProtectedRoute path='/users/:userId' exact={true} component={User} />
         <ProtectedRoute path='/users' exact={true} component={UsersList} />

@@ -1,7 +1,8 @@
+from app.forms.step_form import StepForm
 from threading import Event
 from flask import Blueprint, request
 from app.models import db, Project, Step, Comment
-from app.forms import ProjectForm
+from app.forms import ProjectForm, StepForm, CommentForm
 
 project_routes = Blueprint("projects", __name__)
 
@@ -53,7 +54,7 @@ def projectPost():
         db.session.add(project)
         db.session.commit()
         return {"projects": [project.to_dict()]}
-    return {"errors": validation_errors_to_error_messages(form.erros)}, 401
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 # update project
@@ -68,7 +69,7 @@ def projectPut(id):
         db.session.add(project)
         db.session.commit()
         return {"projects": [project.to_dict()]}
-    return {"errors": validation_errors_to_error_messages(form.erros)}, 401
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 # delete project
@@ -78,3 +79,18 @@ def projectDelete(id):
     db.session.delete(project)
     db.session.commit()
     return {"projects": id}
+
+
+# posting steps
+@project_routes.route("/<int:id>/steps", methods=["POST"])
+def createStep(id):
+    form = StepForm()
+    form["csrf_token"].data = request.cookies["csrf_toekn"]
+
+    if form.validate_on_submit():
+        step = Step()
+        form.populate_obj(step)
+        db.session.add(step)
+        db.session.commit()
+        return step.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
