@@ -25,6 +25,7 @@ class Project(db.Model):
             "category": self.category,
             "imgUrl": self.imgUrl,
             "user": self.user.to_dict(),
+            "steps": self.steps.to_dict(),
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
         }
