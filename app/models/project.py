@@ -1,8 +1,9 @@
 from .db import db
 from sqlalchemy.sql import func
 
+
 class Project(db.Model):
-    __tablename__ ='projects'
+    __tablename__ = "projects"
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
@@ -14,16 +15,16 @@ class Project(db.Model):
     updatedAt = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     user = db.relationship("User", back_populates="projects")
-    comments = db.relationship("Comment", back_populates='project', cascade='delete')
-    steps = db.relationship("Step", back_populates='project', cascade='delete')
+    comments = db.relationship("Comment", back_populates="project", cascade="delete")
+    steps = db.relationship("Step", back_populates="project", cascade="delete")
 
     def to_dict(self):
-      return {
-        'id': self.id,
-        'title': self.title,
-        'category': self.category,
-        'imgUrl': self.imgUrl,
-        'userId': self.userId,
-        'createdAt': self.createdAt,
-        'updatedAt': self.updatedAt,
-      }
+        return {
+            "id": self.id,
+            "title": self.title,
+            "category": self.category,
+            "imgUrl": self.imgUrl,
+            "user": self.user.to_dict(),
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt,
+        }

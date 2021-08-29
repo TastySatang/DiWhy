@@ -14,7 +14,7 @@ export default function ProjectsPage() {
   }, [dispatch])
 
   return (
-    <>
+    <div className='projects-content'>
       <div className='project-list-wrapper'>
         <div className='projects-list'>
           {projects.map((project, idx) => {
@@ -23,11 +23,18 @@ export default function ProjectsPage() {
                 <Link to={`/projects/${project.id}`}>
                   <img className='project-thumbnail' src={project.imgUrl} alt={`${project.title}`} />
                 </Link>
+                <div className='project-info'>
+                  <strong><Link className='project-info-title' to={`/projects/${project.id}`}>{project.title}</Link></strong>
+                  <span> by {project.user.username}</span>
+                  {project.category && <span> in {project.category}</span>}
+                </div>
+                <div>
+                </div>
               </div>
             )
           })}
         </div>
       </div>
-    </>
+    </div>
   )
 }

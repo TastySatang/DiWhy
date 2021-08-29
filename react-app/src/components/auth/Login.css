@@ -1,7 +1,3 @@
-#root {
-  height: calc(100vh - 3rem);
-}
-
 .wrapper__login {
   height: calc(100vh - 7rem);
   width: 100%;
