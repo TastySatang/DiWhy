@@ -20,8 +20,5 @@ class Step(db.Model):
             "instruction": self.instruction,
             "projectId": self.projectId,
             "title": self.title,
-<<<<<<< HEAD
-=======
             "image": self.image,
->>>>>>> main
         }

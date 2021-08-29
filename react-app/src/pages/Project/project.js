@@ -32,17 +32,11 @@ export default function ProjectPage() {
         </div>
       </header>
       <div className='content'>
-<<<<<<< HEAD
-        <section className='project__intro'>
-=======
         <section className='project__intro step'>
->>>>>>> main
           <div className='project__thumb'>
             <img src={project?.imgUrl}></img>
           </div>
         </section>
-<<<<<<< HEAD
-=======
         <section>
           {project?.steps.map((step, idx) => {
 
@@ -56,7 +50,6 @@ export default function ProjectPage() {
           })}
 
         </section>
->>>>>>> main
       </div>
     </article>
   )
