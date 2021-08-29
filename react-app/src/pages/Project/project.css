@@ -1,0 +1,30 @@
+.article__header {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.header__posted {
+ text-align: left;
+}
+
+.project__thumb {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.content > section {
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.section__title {
+  text-align: center;
+}
+
+.section__instruction {
+  text-align: left;
+}

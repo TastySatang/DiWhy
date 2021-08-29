@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, session, redirect
+from flask.helpers import url_for
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
@@ -8,6 +9,7 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.project_routes import project_routes
 
 from .seeds import seed_commands
 
@@ -31,6 +33,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(auth_routes, url_prefix="/api/auth")
+app.register_blueprint(project_routes, url_prefix="/api/projects")
 db.init_app(app)
 # https://github.com/miguelgrinberg/Flask-Migrate/issues/281
 Migrate(app, db, compare_type=True)

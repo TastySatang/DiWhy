@@ -71,10 +71,27 @@ const NavBar = () => {
             <img className='botnav__logo' src={robot} alt={robot} />
             <span>DiWHY</span>
           </NavLink>
+          <NavLink className='NavLink' to='/projects'>
+            <button className='NavBtn'>Projects</button>
+          </NavLink>
         </div>
-
+        <div className='botnavbar__right'>
+          {user ? (
+            <div>
+              <NavLink className='NavLink' to='/projects/new'>
+                PUBLISH
+              </NavLink>
+            </div>
+          ) :
+            (
+              <div>
+                <NavLink className='NavLink' to='/login'>
+                  PUBLISH
+                </NavLink>
+              </div>
+            )}
+        </div>
       </div>
-
     </div>
   );
 }

@@ -1,5 +1,5 @@
 .Home__imageContent {
-  height: 400px;
+  height: 540px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -17,7 +17,12 @@
   color: white;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
-  margin-left: 20px;
+  font-weight: bold;
+  margin-left: 60px;
+  padding-top: 50px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-bottom: 40px;
 }
 
 .imageContent__text > h1 {
