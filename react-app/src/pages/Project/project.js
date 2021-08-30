@@ -10,6 +10,7 @@ export default function ProjectPage() {
   const history = useHistory()
   const { id } = useParams()
   const project = useSelector((state) => (state?.projects[id]))
+  const user = useSelector((state) => (state.session.user))
 
   const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
   const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
@@ -31,7 +32,12 @@ export default function ProjectPage() {
 
   return (
     <article className='article'>
-      <button onClick={handleDelete}>DELETE</button>
+      {user?.id === project?.user.id && (
+        <div className='editable'>
+          <button className='btn' >Edit this post</button>
+          <button className='btn' onClick={handleDelete}>!!Un-publish!!</button>
+        </div>
+      )}
       <header className='article__header'>
         <h1 className='header__title'>
           {project?.title}

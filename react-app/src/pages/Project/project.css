@@ -52,3 +52,16 @@
   margin-right: auto;
   margin-bottom: 40px;
 }
+
+.editable {
+  position: fixed;
+  bottom: 5px;
+  right: 20px;
+}
+
+.btn {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+}
