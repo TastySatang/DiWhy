@@ -1,24 +1,37 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { getProject } from '../../store/project'
+import { useHistory, useParams } from 'react-router-dom'
+import { deleteProject, getProject } from '../../store/project'
 
 import './project.css'
 
 export default function ProjectPage() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { id } = useParams()
   const project = useSelector((state) => (state?.projects[id]))
+
+  const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
+  const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
 
   useEffect(() => {
     dispatch(getProject(id))
   }, [dispatch, id])
 
-  const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
-  const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    const deleted = await dispatch(deleteProject(id))
+
+    if (deleted) {
+      history.push('/projects')
+    }
+  }
 
   return (
     <article className='article'>
+      <button onClick={handleDelete}>DELETE</button>
       <header className='article__header'>
         <h1 className='header__title'>
           {project?.title}

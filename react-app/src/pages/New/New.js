@@ -55,6 +55,8 @@ export default function NewProject() {
 
       await dispatch(createStep(stepPayload))
     })
+
+    history.push(`/project`)
   }
 
   const handleImageUpdate = idx => e => {

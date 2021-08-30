@@ -82,7 +82,7 @@ export const updateProject = project => async dispatch => {
 }
 
 export const deleteProject = id => async dispatch => {
-  const res = await fetch(`/api/projects/${id}/`, {
+  const res = await fetch(`/api/projects/${id}`, {
     method: 'DELETE',
   })
 
