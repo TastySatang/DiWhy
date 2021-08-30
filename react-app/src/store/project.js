@@ -52,7 +52,7 @@ export const creatProject = project => async dispatch => {
 
   if (res.ok) {
     const project = await res.json()
-    await dispatch(setProject(project))
+    await dispatch(setProjects(project))
     return project
   } else if (res.status < 500) {
     const data = await res.json();
@@ -75,7 +75,7 @@ export const updateProject = project => async dispatch => {
 
   if (res.ok) {
     const project = await res.json()
-    await dispatch(setProject(project))
+    await dispatch(setProjects(project))
     return project
   } else if (res.status < 500) {
     const data = await res.json();

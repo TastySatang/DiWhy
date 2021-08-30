@@ -18,9 +18,18 @@ export default function EditProject() {
   const [steps, setSteps] = useState([{ 'title': '', 'image': '', 'index': 0 }])
 
   useEffect(() => {
-    dispatch(getProject(id))
+    (async () => {
+      await dispatch(getProject(id))
+    })();
+  }, [dispatch, id])
 
-  }, [dispatch, project])
+  useEffect(() => {
+    setTitle(project?.title || '')
+    setCategory(project?.category || '')
+    setImgUrl(project?.imgUrl || '')
+    setSteps(project?.steps || [{ 'title': '', 'image': '', 'index': 0 }])
+    console.log('steps', steps)
+  }, [project, project.steps])
 
   const increment = () => {
     let newArr = [...steps]

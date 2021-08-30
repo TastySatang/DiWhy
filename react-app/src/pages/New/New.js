@@ -56,7 +56,7 @@ export default function NewProject() {
       await dispatch(createStep(stepPayload))
     })
 
-    history.push(`/project`)
+    history.push(`/projects/${projectId}`)
   }
 
   const handleImageUpdate = idx => e => {
@@ -141,7 +141,6 @@ export default function NewProject() {
         </div>
         <button type='button' onClick={increment}>Add Step</button>
         {steps.length > 1 && <button type='button' onClick={decrement}>Remove Step</button>}
-
       </form>
     </div>
   )
