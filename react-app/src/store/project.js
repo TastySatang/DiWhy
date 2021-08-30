@@ -97,6 +97,7 @@ export const deleteProject = id => async dispatch => {
 export const createStep = step => async dispatch => {
   const { index, title, instruction, image, projectId } = step
 
+  console.log('inside thunk action', index, title, instruction, image, projectId)
   const res = await fetch(`/api/projects/steps/`, {
     method: "POST",
     headers: {

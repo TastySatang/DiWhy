@@ -43,7 +43,8 @@ export default function NewProject() {
     const project = await dispatch(creatProject(projectPayload))
     const projectId = project.id
 
-    steps.map(async (step, idx) => {
+    console.log('inside handle submit ', steps)
+    steps.forEach(async (step, idx) => {
       const stepPayload = {
         index: idx,
         title: step.title,
@@ -55,8 +56,6 @@ export default function NewProject() {
 
       await dispatch(createStep(stepPayload))
     })
-
-    history.push('/projects')
   }
 
   const handleImageUpdate = idx => e => {
