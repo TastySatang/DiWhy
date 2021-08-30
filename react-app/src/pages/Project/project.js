@@ -41,8 +41,8 @@ export default function ProjectPage() {
           {project?.steps.map((step, idx) => {
 
             return (
-              <div className='step__wrapper'>
-                <div key='idx' className='intro__step'>
+              <div key={idx} className='step__wrapper'>
+                <div className='intro__step'>
                   <h2 className='step__title'>{step.title}</h2>
                   {step.image && (
                     <div className='step__image__wrapper'>

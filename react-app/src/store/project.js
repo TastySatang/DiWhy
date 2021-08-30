@@ -12,7 +12,7 @@ const removeProject = id => ({
 })
 
 export const getProjects = () => async dispatch => {
-  const res = await fetch('/api/projects');
+  const res = await fetch('/api/projects/');
 
   if (res.ok) {
     const projects = await res.json();
@@ -24,7 +24,7 @@ export const getProjects = () => async dispatch => {
 }
 
 export const getProject = (id) => async dispatch => {
-  const res = await fetch(`/api/projects/${id}`);
+  const res = await fetch(`/api/projects/${id}/`);
 
   if (res.ok) {
     const project = await res.json()
@@ -36,7 +36,7 @@ export const getProject = (id) => async dispatch => {
 }
 
 export const creatProject = project => async dispatch => {
-  const res = await fetch('/api/projects', {
+  const res = await fetch('/api/projects/', {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -46,7 +46,7 @@ export const creatProject = project => async dispatch => {
 
   if (res.ok) {
     const project = await res.json()
-    await dispatch(setProject)
+    await dispatch(setProject(project))
     return project
   } else if (res.status < 500) {
     const data = await res.json();
@@ -59,7 +59,7 @@ export const creatProject = project => async dispatch => {
 }
 
 export const updateProject = project => async dispatch => {
-  const res = await fetch('/api/projects', {
+  const res = await fetch('/api/projects/', {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -69,7 +69,7 @@ export const updateProject = project => async dispatch => {
 
   if (res.ok) {
     const project = await res.json()
-    await dispatch(setProject)
+    await dispatch(setProject(project))
     return project
   } else if (res.status < 500) {
     const data = await res.json();
@@ -82,7 +82,7 @@ export const updateProject = project => async dispatch => {
 }
 
 export const deleteProject = id => async dispatch => {
-  const res = await fetch(`/api/projects/${id}`, {
+  const res = await fetch(`/api/projects/${id}/`, {
     method: 'DELETE',
   })
 
@@ -93,6 +93,34 @@ export const deleteProject = id => async dispatch => {
     return ['An error has occured. Please try again']
   }
 }
+
+export const createStep = step => async dispatch => {
+  const { index, title, instruction, image, projectId } = step
+
+  const res = await fetch(`/api/projects/steps/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      index, title, instruction, image, projectId
+    })
+  })
+
+  if (res.ok) {
+    const step = await res.json()
+    await dispatch(setProject(step.project))
+    return step
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors
+    }
+  } else {
+    return ['An error has occurred. Please try again.']
+  }
+}
+
 
 const initialState = {};
 

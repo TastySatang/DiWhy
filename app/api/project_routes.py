@@ -32,9 +32,9 @@ def projectsGet():
 
 
 # get one project
-@project_routes.route("/<int:id>")
+@project_routes.route("/<int:id>/")
 def projectOne(id):
-    project = Project.query.filter_by(id=id).one()
+    project = Project.query.filter_by(id == id).one()
     return {"projects": [project.to_dict()]}
 
 
@@ -82,8 +82,8 @@ def projectDelete(id):
 
 
 # posting steps
-@project_routes.route("/<int:id>/steps", methods=["POST"])
-def createStep(id):
+@project_routes.route("/steps", methods=["POST"])
+def createStep():
     form = StepForm()
     form["csrf_token"].data = request.cookies["csrf_toekn"]
 

@@ -1,14 +1,19 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { creatProject, createStep } from '../../store/project'
 
 import './New.css'
 
 export default function NewProject() {
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const user = useSelector(state => state.session.user)
 
-  const [title, setTitle] = useState()
+  const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
-  const [imgUrl, setImgUrl] = useState()
+  const [imgUrl, setImgUrl] = useState('')
   const [steps, setSteps] = useState([{}])
-  const [count, setCount] = useState(1)
 
   const increment = () => {
     let newArr = [...steps]
@@ -28,6 +33,30 @@ export default function NewProject() {
   const handleSubmit = async e => {
     e.preventDefault();
 
+    const projectPayload = {
+      title,
+      category,
+      imgUrl,
+      userId: user.id,
+    }
+
+    const project = await dispatch(creatProject(projectPayload))
+    const projectId = project.id
+
+    steps.map(async (step, idx) => {
+      const stepPayload = {
+        index: idx,
+        title: step.title,
+        instruction: step.instruction,
+        image: step.image,
+        projectId,
+        project,
+      }
+
+      await dispatch(createStep(stepPayload))
+    })
+
+    history.push('/projects')
   }
 
   const handleImageUpdate = idx => e => {
@@ -44,7 +73,11 @@ export default function NewProject() {
     console.log('target value: ' + e.target.value)
 
     let newArr = [...steps];
-    newArr[idx]['title'] = `Step ${idx}: ${e.target.value}`
+    if (idx > 0) {
+      newArr[idx]['title'] = `Step ${idx}: ${e.target.value}`
+    } else if (idx === 0) {
+      newArr[idx]['title'] = `Intro + Supplies: ${e.target.value}`
+    }
     setSteps(newArr)
   }
 
@@ -64,6 +97,7 @@ export default function NewProject() {
     stepsForm.push(
       <div key={i} className='step__form'>
         <input type='url' value={step.image} onChange={handleImageUpdate(i)} />
+        <img src={step.image} alt='stepimg' />
         <input type='text' placeholder={`Step ${i}:`} onChange={handleTitleUpdate(i)} />
         <textarea placeholder='instructions' required value={step.instruction} onChange={handleInstructionUpdate(i)} />
       </div>
@@ -81,7 +115,7 @@ export default function NewProject() {
           </div>
           <div className='form__right'>
             <div>
-              <input className='form__text' onChange={e => setTitle(e.target.value)} type='text' placeholder='project title' required />
+              <input className='form__text' value={title} onChange={e => setTitle(e.target.value)} type='text' placeholder='project title' required />
             </div>
             <div className='form__toolbar'>
               <select className='tool' value={category} onChange={e => setCategory(e.target.value)} placeholder='Category'>
@@ -96,9 +130,10 @@ export default function NewProject() {
         </div>
         <div className='steps__container'>
           <div className='step__form'>
-            <input type='url' />
-            <input type='text' placeholder='Intro + Supplies' />
-            <textarea placeholder='Describe your project' required />
+            <input type='url' onChange={handleImageUpdate(0)} />
+            <img src={steps[0].image} alt='stepimg' />
+            <input type='text' placeholder='Intro + Supplies' onChange={handleTitleUpdate(0)} />
+            <textarea placeholder='Describe your project' onChange={handleInstructionUpdate(0)} required />
           </div>
           {stepsForm}
         </div>
