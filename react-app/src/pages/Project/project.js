@@ -34,7 +34,7 @@ export default function ProjectPage() {
       <div className='content'>
         <section className='project__intro step'>
           <div className='project__thumb'>
-            <img className='project__image' src={project?.imgUrl}></img>
+            <img className='project__image' src={project?.imgUrl} alt='projectimage'></img>
           </div>
         </section>
         <section>
@@ -46,7 +46,7 @@ export default function ProjectPage() {
                   <h2 className='step__title'>{step.title}</h2>
                   {step.image && (
                     <div className='step__image__wrapper'>
-                      <img className='step__image project__image' src={step.image} />
+                      <img className='step__image project__image' src={step.image} alt='projectimage' />
                     </div>)}
                   <p className='step__body'>{step.instruction}</p>
                 </div>

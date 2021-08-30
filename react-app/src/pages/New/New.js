@@ -29,10 +29,41 @@ export default function NewProject() {
     }
   }
 
+  let steps = [];
+  for (let i = 0; i < count; i++) {
+    steps.push(
+      <div>
+
+      </div>
+    )
+  }
+
+
   return (
     <div className='project__form__wrapper'>
-      <form className='project__form'>
-        <div>
+      <form onSubmit={handleSubmit} className='project__form'>
+        <div className='form__projectinfo'>
+          <div className='form__imagecontainer'>
+            <input type='text' onChange={e => setImgUrl(e.target.value)} placeholder='image url' />
+            {imgUrl && <img className='preview_image' alt='preview' src={imgUrl} />}
+          </div>
+          <div class='form__right'>
+            <div>
+              <input className='form__text' type='text' placeholder='project title' />
+            </div>
+            <div className='form__toolbar'>
+              <select className='tool' value={category} onChange={e => setCategory(e.target.value)} placeholder='Category'>
+                <option value='Life Hacks'>Life Hacks</option>
+                <option value='Food'>Food</option>
+                <option value='Fashion'>Fashion</option>
+                <option value=''>Others</option>
+              </select>
+              <button type='submit' className='form__btn'>Publish</button>
+            </div>
+          </div>
+        </div>
+        <div className='steps__container'>
+
         </div>
       </form>
     </div>
