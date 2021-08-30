@@ -1,24 +1,49 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { getProject } from '../../store/project'
+import { useHistory, useParams, Link } from 'react-router-dom'
+import { deleteProject, getProject, getProjects } from '../../store/project'
 
 import './project.css'
 
 export default function ProjectPage() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { id } = useParams()
   const project = useSelector((state) => (state?.projects[id]))
+  const user = useSelector((state) => (state.session.user))
+
+  const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
+  const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
 
   useEffect(() => {
     dispatch(getProject(id))
   }, [dispatch, id])
 
-  const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
-  const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
+  useEffect(() => {
+    dispatch(getProjects())
+  }, [dispatch])
+
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    const deleted = await dispatch(deleteProject(id))
+
+    if (deleted) {
+      history.push('/projects')
+    }
+  }
 
   return (
     <article className='article'>
+      {user?.id === project?.user.id && (
+        <div className='editable'>
+          <Link to={`/projects/${project.id}/edit`}>
+            <button className='btn edit-btn' >Edit this post</button>
+          </Link>
+          <button className='btn dele-btn' onClick={handleDelete}>Un-publish</button>
+        </div>
+      )}
       <header className='article__header'>
         <h1 className='header__title'>
           {project?.title}
@@ -34,17 +59,24 @@ export default function ProjectPage() {
       <div className='content'>
         <section className='project__intro step'>
           <div className='project__thumb'>
-            <img src={project?.imgUrl}></img>
+            <img className='project__image' src={project?.imgUrl} alt='projectimage'></img>
           </div>
         </section>
         <section>
           {project?.steps.map((step, idx) => {
 
             return (
-              <div key='idx' className='intro__step'>
-                <h1 className='section__title'>Step {idx}: {step.title}</h1>
-                {project.image && (<img src={project.image} />)}
-                <p className='section__instruction'>{step.instruction}</p>
+              <div key={idx} className='step__wrapper'>
+                <div className='intro__step'>
+                  <h2 className='step__title'>{step.title}</h2>
+                  {step.image && (
+                    <div className='step__image__wrapper'>
+                      <img className='step__image project__image' src={step.image} alt='projectimage' />
+                    </div>)}
+                  <p className='step__body'>{step.instruction}</p>
+                </div>
+                <div className='step__divider'>
+                </div>
               </div>
             )
           })}

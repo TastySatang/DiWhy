@@ -1,7 +1,8 @@
+from app.forms.step_form import StepForm
 from threading import Event
 from flask import Blueprint, request
-from app.models import db, Project, Step, Comment
-from app.forms import ProjectForm
+from app.models import db, Project, Step, Comment, project
+from app.forms import ProjectForm, StepForm, CommentForm
 
 project_routes = Blueprint("projects", __name__)
 
@@ -31,7 +32,7 @@ def projectsGet():
 
 
 # get one project
-@project_routes.route("/<int:id>")
+@project_routes.route("/<int:id>/")
 def projectOne(id):
     project = Project.query.filter_by(id=id).one()
     return {"projects": [project.to_dict()]}
@@ -53,22 +54,31 @@ def projectPost():
         db.session.add(project)
         db.session.commit()
         return {"projects": [project.to_dict()]}
-    return {"errors": validation_errors_to_error_messages(form.erros)}, 401
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 # update project
 @project_routes.route("/<int:id>", methods=["PUT"])
 def projectPut(id):
+    project = Project.query.filter(Project.id == id).first()
+    db.session.delete(project)
+    db.session.commit()
+
     form = ProjectForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        project = Project.query.filter(Project.id == id).first()
-        form.populate_obj(project)
+        project = Project(
+            id=id,
+            title=form.data["title"],
+            category=form.data["category"],
+            imgUrl=form.data["imgUrl"],
+            userId=form.data["userId"],
+        )
         db.session.add(project)
         db.session.commit()
         return {"projects": [project.to_dict()]}
-    return {"errors": validation_errors_to_error_messages(form.erros)}, 401
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
 # delete project
@@ -78,3 +88,19 @@ def projectDelete(id):
     db.session.delete(project)
     db.session.commit()
     return {"projects": id}
+
+
+# posting step
+@project_routes.route("/<int:projectId>/steps", methods=["POST"])
+def createStep(projectId):
+    form = StepForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    print("inside posting step", form.data["index"])
+    if form.validate_on_submit():
+        step = Step()
+        form.populate_obj(step)
+        db.session.add(step)
+        db.session.commit()
+        return step.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401

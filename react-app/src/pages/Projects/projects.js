@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     <div className='projects-content'>
       <div className='project-list-wrapper'>
         <div className='projects-list'>
-          {projects.map((project, idx) => {
+          {projects.slice(0).reverse().map((project, idx) => {
             return (
               <div className='project-wrapper' key={idx}>
                 <Link to={`/projects/${project.id}`}>
@@ -25,8 +25,8 @@ export default function ProjectsPage() {
                 </Link>
                 <div className='project-info'>
                   <strong><Link className='project-info-title' to={`/projects/${project.id}`}>{project.title}</Link></strong>
-                  <span> by {project.user.username}</span>
-                  {project.category && <span> in {project.category}</span>}
+                  <span> by <span className='projectdot'>{project.user.username}</span></span>
+                  {project.category && <span> in <span className='projectdot'>{project.category}</span></span>}
                 </div>
                 <div>
                 </div>

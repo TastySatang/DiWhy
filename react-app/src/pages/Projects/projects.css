@@ -49,8 +49,10 @@
 
 .project-thumbnail {
   max-width: 100%;
+  min-width: 100%;
   border-radius: 4px 4px 0 0;
   vertical-align: middle;
+  text-align: center;
 }
 
 .project-info {
@@ -67,4 +69,9 @@
 
 .project-info-title:hover {
   text-decoration: underline;
+}
+
+.projectdot {
+  color: rgb(66, 66, 66);
+  font-weight: bold;
 }
