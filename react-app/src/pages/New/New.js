@@ -129,12 +129,14 @@ export default function NewProject() {
           </div>
         </div>
         <div className='steps__container'>
-          <div className='step__form'>
-            <input type='url' onChange={handleImageUpdate(0)} />
-            <img src={steps[0].image} alt='stepimg' />
-            <input type='text' placeholder='Intro + Supplies' onChange={handleTitleUpdate(0)} />
-            <textarea placeholder='Describe your project' onChange={handleInstructionUpdate(0)} required />
-          </div>
+          {steps &&
+            <div className='step__form'>
+              <input type='url' onChange={handleImageUpdate(0)} />
+              <img src={steps[0].image} alt='stepimg' />
+              <input type='text' placeholder='Intro + Supplies' onChange={handleTitleUpdate(0)} />
+              <textarea placeholder='Describe your project' onChange={handleInstructionUpdate(0)} required />
+            </div>
+          }
           {stepsForm}
         </div>
         <button type='button' onClick={increment}>Add Step</button>

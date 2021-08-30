@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { creatProject, createStep, getProject } from '../../store/project'
+import { createStep, getProject, updateProject } from '../../store/project'
 
 import './New.css'
 
@@ -15,15 +15,17 @@ export default function EditProject() {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [imgUrl, setImgUrl] = useState('')
-  const [steps, setSteps] = useState([])
+  const [steps, setSteps] = useState('')
 
   useEffect(() => {
     dispatch(getProject(id))
+
     setCategory(project?.category)
     setTitle(project?.title)
     setImgUrl(project?.imgUrl)
     setSteps(project?.steps)
-  }, [dispatch, project?.category, project?.title, project?.imgUrl])
+
+  }, [dispatch, id, project?.category, project?.title, project?.imgUrl])
 
   const increment = () => {
     let newArr = [...steps]
@@ -43,13 +45,14 @@ export default function EditProject() {
     e.preventDefault();
 
     const projectPayload = {
+      id,
       title,
       category,
       imgUrl,
       userId: user.id,
     }
 
-    const project = await dispatch(creatProject(projectPayload))
+    const project = await dispatch(updateProject(projectPayload))
     const projectId = project.projects[0].id
 
     console.log('inside handle submit ', steps, 'projectid', projectId)
@@ -65,8 +68,6 @@ export default function EditProject() {
 
       await dispatch(createStep(stepPayload))
     })
-
-    history.push(`/project`)
   }
 
   const handleImageUpdate = idx => e => {
@@ -102,14 +103,14 @@ export default function EditProject() {
 
 
   let stepsForm = [];
-  for (let i = 1; i < steps.length; i++) {
+  for (let i = 1; i < steps?.length; i++) {
     let step = steps[i]
     stepsForm.push(
       <div key={i} className='step__form'>
-        <input type='url' value={step.image} onChange={handleImageUpdate(i)} />
-        <img src={step.image} alt='stepimg' />
-        <input type='text' placeholder={`Step ${i}:`} onChange={handleTitleUpdate(i)} />
-        <textarea placeholder='instructions' required value={step.instruction} onChange={handleInstructionUpdate(i)} />
+        <input type='url' onChange={handleImageUpdate(i)} />
+        {step.image && <img src={step.image} alt='stepimg' />}
+        <input type='text' placeholder={`Step ${i}:`} value={step?.title} onChange={handleTitleUpdate(i)} />
+        <textarea placeholder='instructions' required value={step?.instruction} onChange={handleInstructionUpdate(i)} />
       </div>
     )
   }
@@ -120,7 +121,6 @@ export default function EditProject() {
       <form onSubmit={handleSubmit} className='project__form'>
         <div className='form__projectinfo'>
           <div className='form__imagecontainer'>
-            <input type='url' onChange={e => setImgUrl(e.target.value)} placeholder='image url' required />
             {imgUrl && <img className='preview_image' alt='preview' src={imgUrl} />}
           </div>
           <div className='form__right'>
@@ -139,16 +139,17 @@ export default function EditProject() {
           </div>
         </div>
         <div className='steps__container'>
-          <div className='step__form'>
-            <input type='url' onChange={handleImageUpdate(0)} />
-            <img src={steps[0]?.image} alt='stepimg' />
-            <input type='text' placeholder='Intro + Supplies' onChange={handleTitleUpdate(0)} />
-            <textarea placeholder='Describe your project' onChange={handleInstructionUpdate(0)} required />
-          </div>
+          {steps &&
+            <div className='step__form'>
+              <input type='url' value={steps[0]?.image} onChange={handleImageUpdate(0)} />
+              {steps[0]?.image && <img src={steps[0]?.image} alt='stepimg' />}
+              <input type='text' placeholder='Intro + Supplies' value={steps[0]?.title} onChange={handleTitleUpdate(0)} />
+              <textarea placeholder='Describe your project' value={steps[0]?.instruction} onChange={handleInstructionUpdate(0)} required />
+            </div>}
           {stepsForm}
         </div>
         <button type='button' onClick={increment}>Add Step</button>
-        {steps.length > 1 && <button type='button' onClick={decrement}>Remove Step</button>}
+        {steps?.length > 1 && <button type='button' onClick={decrement}>Remove Step</button>}
 
       </form>
     </div>

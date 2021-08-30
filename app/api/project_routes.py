@@ -60,12 +60,21 @@ def projectPost():
 # update project
 @project_routes.route("/<int:id>", methods=["PUT"])
 def projectPut(id):
+    project = Project.query.filter(Project.id == id).first()
+    db.session.delete(project)
+    db.session.commit()
+
     form = ProjectForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        project = Project.query.filter(Project.id == id).first()
-        form.populate_obj(project)
+        project = Project(
+            id=id,
+            title=form.data["title"],
+            category=form.data["category"],
+            imgUrl=form.data["imgUrl"],
+            userId=form.data["userId"],
+        )
         db.session.add(project)
         db.session.commit()
         return {"projects": [project.to_dict()]}
