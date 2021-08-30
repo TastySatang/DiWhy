@@ -145,10 +145,15 @@ export default function EditProject() {
         <div className='steps__container'>
           {steps &&
             <div className='step__form'>
-              <input type='url' value={steps[0]?.image} onChange={handleImageUpdate(0)} />
-              {steps[0]?.image && <img src={steps[0]?.image} alt='stepimg' />}
-              <input type='text' placeholder='Intro + Supplies' value={steps[0]?.title} onChange={handleTitleUpdate(0)} />
-              <textarea placeholder='Describe your project' value={steps[0]?.instruction} onChange={handleInstructionUpdate(0)} required />
+              <div className='step__form__left'>
+                <input type='url' value={steps[0]?.image} onChange={handleImageUpdate(0)} />
+                {steps[0]?.image && <img src={steps[0]?.image} alt='stepimg' />}
+              </div>
+              <div className='step__form__right'>
+                <input type='text' placeholder='Intro + Supplies' value={steps[0]?.title} onChange={handleTitleUpdate(0)} />
+                <textarea placeholder='Describe your project' value={steps[0]?.instruction} onChange={handleInstructionUpdate(0)} required />
+              </div>
+
             </div>}
           {stepsForm}
         </div>

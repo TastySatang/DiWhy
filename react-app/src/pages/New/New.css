@@ -61,3 +61,34 @@
  padding: 6px 12px;
  vertical-align: middle;
 }
+
+.step__form {
+  display: flex;
+  width: 95%;
+  background-color: #F6F6F6;
+  border: 1px solid #DDDDDD;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step__form__left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.step__form__left > input {
+  padding: 6px 12px;
+  font-size: 14px;
+  margin: 10px;
+  width: 400px;
+}
+
+.step__form__left > img {
+  max-width: 130px;
+  max-height: 130px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
