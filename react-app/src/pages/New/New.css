@@ -9,19 +9,28 @@
 }
 
 .form__projectinfo {
-  display: flex;
   background-color: #F6F6F6;
+  border-bottom: 1px solid #DDDDDD;
+  padding: 40px;
+}
+
+.projectinfo__wrapper {
+  display: flex;
+  padding: 40px;
+  background-color: #EEEEEE;
+  border-radius: 10px;
+  box-shadow: inset 0 0 3px 3px #dfdfdf;
 }
 
 .form__imagecontainer {
   display: flex;
   flex-direction: column;
   margin: 10px;
-  width: 500px;
+  width: 400px;
 }
 
 .preview_image {
-  max-width: 500px;
+  max-width: 400px;
   border-radius: 4px;
   margin-top: 10px;
 }
@@ -44,12 +53,13 @@
 
 .form__btn {
   color: white;
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 17px;
   border: none;
   background-color: #f0a428;
-  margin-left: 5px
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 .tool {
@@ -64,31 +74,76 @@
 
 .step__form {
   display: flex;
+  justify-content: flex-start;
   width: 95%;
+  height: 100%;
   background-color: #F6F6F6;
   border: 1px solid #DDDDDD;
   border-radius: 10px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .step__form__left {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   width: 50%;
 }
 
 .step__form__left > input {
-  padding: 6px 12px;
+  padding: 3px 6px;
   font-size: 14px;
   margin: 10px;
-  width: 400px;
+  width: 160px;
 }
 
 .step__form__left > img {
-  max-width: 130px;
-  max-height: 130px;
+  max-width: 160px;
+  max-height: 160px;
   border-radius: 10px;
-  margin-left: 10px;
+  justify-self: center;
+}
+
+.step__form__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.step__form__right > input {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.step__form__right > textarea {
+  letter-spacing: 1px;
+  min-height: 100px;
+  width: 400px;
+  resize: vertical;
+  padding: 10px;
+}
+
+.button__holder {
+  margin-top: 40px;
+  width: fit-content;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+}
+
+.steps__button {
+  padding: 11px 19px;
+  font: 400 17px Arial;
+  border: 1px solid #D4D4D4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.increment {
+  margin-right: 10px;
 }
