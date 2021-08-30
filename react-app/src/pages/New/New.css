@@ -100,6 +100,13 @@
   font-size: 14px;
   margin: 10px;
   width: 160px;
+  background-color: #F6F6F6;
+  border: none;
+}
+
+.step__form__right > input:focus {
+  border: 1px solid #767676;
+  background-color: #FFFFFF;
 }
 
 .step__form__left > img {
@@ -118,6 +125,8 @@
   margin-top: 10px;
   margin-bottom: 5px;
 }
+
+
 
 .step__form__right > textarea {
   letter-spacing: 1px;

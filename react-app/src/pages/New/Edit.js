@@ -10,6 +10,7 @@ export default function EditProject() {
   const history = useHistory()
   const { id } = useParams()
   const project = useSelector(state => state.projects[id])
+  const [validationErrors, setValidationErrors] = useState([])
   const user = useSelector(state => state.session.user)
 
   const [title, setTitle] = useState(project?.title)
@@ -46,40 +47,65 @@ export default function EditProject() {
     console.log(steps)
   }
 
+  function handleValidation() {
+    let errors = [];
+    let formIsValid = true;
+
+    // steps title
+    steps.forEach((step, index) => {
+      if (!step.title) {
+        formIsValid = false;
+        errors.push(`Step ${index} is missing a title`)
+      }
+
+      if (!step.instruction) {
+        formIsValid = false;
+        errors.push(`Step ${index} is missing instructions`)
+      }
+    })
+
+    setValidationErrors(errors);
+    return formIsValid
+  }
+
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const projectPayload = {
-      id,
-      title,
-      category,
-      imgUrl,
-      userId: user.id,
-    }
-
-    const project = await dispatch(updateProject(projectPayload))
-    const projectId = project.projects[0].id
-
-    console.log('inside handle submit ', steps, 'projectid', projectId)
-    steps.forEach(async (step, idx) => {
-      const stepPayload = {
-        index: idx,
-        title: step.title,
-        instruction: step.instruction,
-        image: step.image,
-        projectId,
-        project,
+    if (handleValidation()) {
+      const projectPayload = {
+        id,
+        title,
+        category,
+        imgUrl,
+        userId: user.id,
       }
 
-      await dispatch(createStep(stepPayload))
-    })
+      const project = await dispatch(updateProject(projectPayload))
+      const projectId = project.projects[0].id
 
-    if (project) history.push(`/projects/${id}`)
+      console.log('inside handle submit ', steps, 'projectid', projectId)
+      steps.forEach(async (step, idx) => {
+        const stepPayload = {
+          index: idx,
+          title: step.title,
+          instruction: step.instruction,
+          image: step.image,
+          projectId,
+          project,
+        }
+
+        await dispatch(createStep(stepPayload))
+      })
+      if (project) {
+        history.push(`/projects/${projectId}`)
+      }
+    } else {
+      console.log(validationErrors);
+    }
   }
 
   const handleImageUpdate = idx => e => {
     let newArr = [...steps];
-    console.log(newArr)
     newArr[idx]['image'] = `${e.target.value}`
     setSteps(newArr)
   }
@@ -117,8 +143,8 @@ export default function EditProject() {
           {step.image && <img src={step.image} alt='stepimg' />}
         </div>
         <div className='step__form__right'>
-          <input type='text' placeholder={`Step ${i}:`} value={step?.title} onChange={handleTitleUpdate(i)} />
-          <textarea placeholder='instructions' required value={step?.instruction} onChange={handleInstructionUpdate(i)} />
+          <input type='text' placeholder={`Step ${i}:`} value={step?.title} onChange={handleTitleUpdate(i)} required />
+          <textarea placeholder='instructions' value={step?.instruction} onChange={handleInstructionUpdate(i)} required />
         </div>
       </div>
     )
@@ -159,7 +185,7 @@ export default function EditProject() {
                 {steps[0]?.image && <img src={steps[0]?.image} alt='stepimg' />}
               </div>
               <div className='step__form__right'>
-                <input type='text' placeholder='Intro + Supplies' value={steps[0]?.title} onChange={handleTitleUpdate(0)} />
+                <input type='text' placeholder='Intro + Supplies' value={steps[0]?.title} onChange={handleTitleUpdate(0)} required />
                 <textarea placeholder='Describe your project' value={steps[0]?.instruction} onChange={handleInstructionUpdate(0)} required />
               </div>
 
