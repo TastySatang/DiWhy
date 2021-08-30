@@ -34,7 +34,7 @@ def projectsGet():
 # get one project
 @project_routes.route("/<int:id>/")
 def projectOne(id):
-    project = Project.query.filter_by(id == id).one()
+    project = Project.query.filter_by(id=id).one()
     return {"projects": [project.to_dict()]}
 
 
