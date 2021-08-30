@@ -28,8 +28,7 @@ export default function EditProject() {
     setCategory(project?.category || '')
     setImgUrl(project?.imgUrl || '')
     setSteps(project?.steps || [{ 'title': '', 'image': '', 'index': 0 }])
-    console.log('steps', steps)
-  }, [project, project.steps])
+  }, [project, steps])
 
   const increment = () => {
     let newArr = [...steps]

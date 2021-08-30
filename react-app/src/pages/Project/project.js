@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams, Link } from 'react-router-dom'
-import { deleteProject, getProject } from '../../store/project'
+import { deleteProject, getProject, getProjects } from '../../store/project'
 
 import './project.css'
 
@@ -12,16 +12,16 @@ export default function ProjectPage() {
   const project = useSelector((state) => (state?.projects[id]))
   const user = useSelector((state) => (state.session.user))
 
-  const date = (new Date(project?.createdAt).toString().slice(4)).split(' ')
-  const stringedDate = (`${date[0]}, ${date[1]} ${date[2]} ${date}`)
+  const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
+  const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
 
   useEffect(() => {
     dispatch(getProject(id))
   }, [dispatch, id])
 
   useEffect(() => {
-
-  }, [project])
+    dispatch(getProjects())
+  }, [dispatch])
 
 
   const handleDelete = async (e) => {
