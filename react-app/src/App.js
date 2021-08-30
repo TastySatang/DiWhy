@@ -12,6 +12,7 @@ import ProjectsPage from './pages/Projects/projects';
 import ProjectPage from './pages/Project/project';
 import NewProject from './pages/New/New';
 import { authenticate } from './store/session';
+import EditProject from './pages/New/Edit';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,7 @@ function App() {
         <Route path='/sign-up' exact={true} component={SignUpForm} />
         <Route path='/projects' exact component={ProjectsPage} />
         <ProtectedRoute path='/projects/new' exact component={NewProject} />
+        <ProtectedRoute path='/projects/:id/edit' exact component={EditProject} />
         <Route path='/projects/:id' exact component={ProjectPage} />
         <ProtectedRoute path='/users/:userId' exact={true} component={User} />
         <ProtectedRoute path='/users' exact={true} component={UsersList} />

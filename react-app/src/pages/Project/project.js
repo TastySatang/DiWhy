@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, Link } from 'react-router-dom'
 import { deleteProject, getProject } from '../../store/project'
 
 import './project.css'
@@ -34,8 +34,10 @@ export default function ProjectPage() {
     <article className='article'>
       {user?.id === project?.user.id && (
         <div className='editable'>
-          <button className='btn' >Edit this post</button>
-          <button className='btn' onClick={handleDelete}>!!Un-publish!!</button>
+          <Link to={`/projects/${project.id}/edit`}>
+            <button className='btn edit-btn' >Edit this post</button>
+          </Link>
+          <button className='btn dele-btn' onClick={handleDelete}>Un-publish</button>
         </div>
       )}
       <header className='article__header'>
