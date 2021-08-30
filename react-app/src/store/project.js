@@ -144,6 +144,7 @@ const projectReducer = (state = initialState, action) => {
       action.project.projects.forEach(pro => {
         newState[pro.id] = pro
       })
+      return newState
     case REMOVE_PROJECT:
       newState = { ...state }
       delete newState[action.id]

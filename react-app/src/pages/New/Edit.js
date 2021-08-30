@@ -20,7 +20,7 @@ export default function EditProject() {
   useEffect(() => {
     dispatch(getProject(id))
 
-  }, [dispatch, id, project])
+  }, [dispatch, project])
 
   const increment = () => {
     let newArr = [...steps]

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams, Link } from 'react-router-dom'
-import { deleteProject, getProject } from '../../store/project'
+import { deleteProject, getProjects } from '../../store/project'
 
 import './project.css'
 
@@ -16,8 +16,8 @@ export default function ProjectPage() {
   const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
 
   useEffect(() => {
-    dispatch(getProject(id))
-  }, [dispatch])
+    dispatch(getProjects())
+  }, [dispatch, id])
 
 
   const handleDelete = async (e) => {
@@ -28,12 +28,6 @@ export default function ProjectPage() {
     if (deleted) {
       history.push('/projects')
     }
-  }
-
-  if (!project?.id) {
-    return (
-      <h1>404 not found</h1>
-    )
   }
 
   return (
