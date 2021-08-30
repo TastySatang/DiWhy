@@ -1,9 +1,15 @@
 const SET_PROJECT = 'projects/SET_PROJECT'
+const SET_PROJECTS = 'prjects/SET_PROJECTS'
 const REMOVE_PROJECT = 'projects/DELETE_PROJECT'
 
 const setProject = project => ({
   type: SET_PROJECT,
   project,
+})
+
+const setProjects = project => ({
+  type: SET_PROJECTS,
+  project
 })
 
 const removeProject = id => ({
@@ -28,7 +34,7 @@ export const getProject = (id) => async dispatch => {
 
   if (res.ok) {
     const project = await res.json()
-    dispatch(setProject(project))
+    dispatch(setProjects(project))
     return project
   } else {
     return ['An error has occurred. Please try again.']
@@ -125,15 +131,21 @@ export const createStep = step => async dispatch => {
 const initialState = {};
 
 const projectReducer = (state = initialState, action) => {
-  let newState = { ...state };
+  let newState;
   switch (action.type) {
     case SET_PROJECT:
+      newState = { ...state };
       action.project.projects.forEach(pro => {
         newState[pro.id] = pro
       })
       return newState
-
+    case SET_PROJECTS:
+      newState = {};
+      action.project.projects.forEach(pro => {
+        newState[pro.id] = pro
+      })
     case REMOVE_PROJECT:
+      newState = { ...state }
       delete newState[action.id]
       return newState
 

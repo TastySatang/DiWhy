@@ -13,7 +13,7 @@ export default function NewProject() {
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [imgUrl, setImgUrl] = useState('')
-  const [steps, setSteps] = useState([{}])
+  const [steps, setSteps] = useState([{ 'title': '', 'image': '', 'index': 0 }])
 
   const increment = () => {
     let newArr = [...steps]
@@ -96,8 +96,8 @@ export default function NewProject() {
     let step = steps[i]
     stepsForm.push(
       <div key={i} className='step__form'>
-        <input type='url' value={step.image} onChange={handleImageUpdate(i)} />
-        <img src={step.image} alt='stepimg' />
+        <input type='url' value={step?.image} onChange={handleImageUpdate(i)} />
+        {step.image && <img src={step?.image} alt='stepimg' />}
         <input type='text' placeholder={`Step ${i}:`} onChange={handleTitleUpdate(i)} />
         <textarea placeholder='instructions' required value={step.instruction} onChange={handleInstructionUpdate(i)} />
       </div>
@@ -132,7 +132,7 @@ export default function NewProject() {
           {steps &&
             <div className='step__form'>
               <input type='url' onChange={handleImageUpdate(0)} />
-              <img src={steps[0].image} alt='stepimg' />
+              {steps[0].image && <img src={steps[0].image} alt='stepimg' />}
               <input type='text' placeholder='Intro + Supplies' onChange={handleTitleUpdate(0)} />
               <textarea placeholder='Describe your project' onChange={handleInstructionUpdate(0)} required />
             </div>

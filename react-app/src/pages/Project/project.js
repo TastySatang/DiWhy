@@ -30,6 +30,12 @@ export default function ProjectPage() {
     }
   }
 
+  if (!project?.id) {
+    return (
+      <h1>404 not found</h1>
+    )
+  }
+
   return (
     <article className='article'>
       {user?.id === project?.user.id && (

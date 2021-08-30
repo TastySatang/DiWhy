@@ -12,20 +12,15 @@ export default function EditProject() {
   const project = useSelector(state => state.projects[id])
   const user = useSelector(state => state.session.user)
 
-  const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('')
-  const [imgUrl, setImgUrl] = useState('')
-  const [steps, setSteps] = useState('')
+  const [title, setTitle] = useState(project?.title)
+  const [category, setCategory] = useState(project?.category)
+  const [imgUrl, setImgUrl] = useState(project?.imgUrl)
+  const [steps, setSteps] = useState([{ 'title': '', 'image': '', 'index': 0 }])
 
   useEffect(() => {
     dispatch(getProject(id))
 
-    setCategory(project?.category)
-    setTitle(project?.title)
-    setImgUrl(project?.imgUrl)
-    setSteps(project?.steps)
-
-  }, [dispatch, id, project?.category, project?.title, project?.imgUrl])
+  }, [dispatch, id, project])
 
   const increment = () => {
     let newArr = [...steps]
@@ -73,11 +68,9 @@ export default function EditProject() {
   }
 
   const handleImageUpdate = idx => e => {
-    console.log('index ' + idx)
-    console.log('target value: ' + e.target.value)
-
     let newArr = [...steps];
-    newArr[idx]['image'] = e.target.value
+    console.log(newArr)
+    newArr[idx]['image'] = `${e.target.value}`
     setSteps(newArr)
   }
 
@@ -87,9 +80,9 @@ export default function EditProject() {
 
     let newArr = [...steps];
     if (idx > 0) {
-      newArr[idx]['title'] = `Step ${idx}: ${e.target.value}`
+      newArr[idx]['title'] = `${e.target.value}`
     } else if (idx === 0) {
-      newArr[idx]['title'] = `Intro + Supplies: ${e.target.value}`
+      newArr[idx]['title'] = `${e.target.value}`
     }
     setSteps(newArr)
   }
@@ -123,6 +116,7 @@ export default function EditProject() {
       <form onSubmit={handleSubmit} className='project__form'>
         <div className='form__projectinfo'>
           <div className='form__imagecontainer'>
+            <input type='url' onChange={e => setImgUrl(e.target.value)} value={imgUrl} placeholder='image url' required />
             {imgUrl && <img className='preview_image' alt='preview' src={imgUrl} />}
           </div>
           <div className='form__right'>
