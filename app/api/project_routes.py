@@ -1,7 +1,7 @@
 from app.forms.step_form import StepForm
 from threading import Event
 from flask import Blueprint, request
-from app.models import db, Project, Step, Comment
+from app.models import db, Project, Step, Comment, project
 from app.forms import ProjectForm, StepForm, CommentForm
 
 project_routes = Blueprint("projects", __name__)
@@ -81,12 +81,13 @@ def projectDelete(id):
     return {"projects": id}
 
 
-# posting steps
-@project_routes.route("/steps", methods=["POST"])
-def createStep():
+# posting step
+@project_routes.route("/<int:projectId>/steps", methods=["POST"])
+def createStep(projectId):
     form = StepForm()
-    form["csrf_token"].data = request.cookies["csrf_toekn"]
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
+    print("inside posting step", form.data["index"])
     if form.validate_on_submit():
         step = Step()
         form.populate_obj(step)

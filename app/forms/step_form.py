@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class StepForm(FlaskForm):
-    index = IntegerField("index", validators=[DataRequired()])
+    index = IntegerField("index")
     title = StringField("title", validators=[DataRequired()])
     instruction = StringField("instruction", validators=[DataRequired()])
     image = StringField("image")

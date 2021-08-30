@@ -20,7 +20,6 @@ export default function NewProject() {
     newArr.push({})
     setSteps(newArr)
     console.log(steps)
-
   }
 
   const decrement = () => {

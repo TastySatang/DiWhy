@@ -98,7 +98,7 @@ export const createStep = step => async dispatch => {
   const { index, title, instruction, image, projectId } = step
 
   console.log('inside thunk action', index, title, instruction, image, projectId)
-  const res = await fetch(`/api/projects/steps/`, {
+  const res = await fetch(`/api/projects/${projectId}/steps`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -109,9 +109,8 @@ export const createStep = step => async dispatch => {
   })
 
   if (res.ok) {
-    const step = await res.json()
-    await dispatch(setProject(step.project))
-    return step
+    const data = await res.json()
+    return data
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {
