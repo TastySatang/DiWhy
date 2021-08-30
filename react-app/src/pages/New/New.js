@@ -30,7 +30,7 @@ export default function NewProject() {
   }
 
   let steps = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 1; i < count; i++) {
     steps.push(
       <div>
 
