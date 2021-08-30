@@ -41,9 +41,9 @@ export default function NewProject() {
     }
 
     const project = await dispatch(creatProject(projectPayload))
-    const projectId = project.id
+    const projectId = project.projects[0].id
 
-    console.log('inside handle submit ', steps)
+    console.log('inside handle submit ', steps, 'projectid', projectId)
     steps.forEach(async (step, idx) => {
       const stepPayload = {
         index: idx,
