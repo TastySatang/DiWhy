@@ -42,6 +42,9 @@ function App() {
         <Route path='/projects/:id' exact component={ProjectPage} />
         <ProtectedRoute path='/users/:userId' exact={true} component={User} />
         <ProtectedRoute path='/users' exact={true} component={UsersList} />
+        <Route path='/' >
+          <h1>404 not found</h1>
+        </Route>
       </Switch>
     </BrowserRouter >
   );

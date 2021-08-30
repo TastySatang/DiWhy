@@ -17,7 +17,7 @@ export default function ProjectPage() {
 
   useEffect(() => {
     dispatch(getProject(id))
-  }, [dispatch, id])
+  }, [dispatch])
 
 
   const handleDelete = async (e) => {
