@@ -128,7 +128,7 @@ def commentPost(id):
 
     if form.validate_on_submit():
         newComment = Comment(
-            comment=form.data["comment"], event_id=id, user_id=form.data["user_id"]
+            comment=form.data["comment"], projectId=id, userId=form.data["user_id"]
         )
 
         db.session.add(newComment)

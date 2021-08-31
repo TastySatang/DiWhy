@@ -5,7 +5,7 @@ from app.models import db, Comment
 comment_routes = Blueprint("comments", __name__)
 
 # Edit comment
-@comment_routes.route("/<id>", methods=["PUT"])
+@comment_routes.route("/<int:id>", methods=["PUT"])
 def commentPost(id):
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -21,7 +21,7 @@ def commentPost(id):
 
 
 # Delete comment
-@comment_routes.route("/<id>", methods=["DELETE"])
+@comment_routes.route("/<int:id>", methods=["DELETE"])
 def commentDelete(id):
     comment = Comment.query.filter(Comment.id == id).first()
     db.session.delete(comment)
