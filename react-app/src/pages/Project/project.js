@@ -14,7 +14,7 @@ export default function ProjectPage() {
   const project = useSelector((state) => (state?.projects[id]))
   const user = useSelector((state) => (state.session.user))
   const comments = useSelector((state) => Object.values(state.comments)
-    .filter(comment => comment.event_id === Number.parseInt(id)))
+    .filter(comment => comment.projectId === Number.parseInt(id)))
 
   const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
   const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)

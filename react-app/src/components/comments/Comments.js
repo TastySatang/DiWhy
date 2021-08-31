@@ -70,7 +70,7 @@ const Comments = ({ id, comments }) => {
 
 
   return (
-    <div>
+    <div className='comment__section'>
       {commentForm}
 
       {comments?.slice(0).reverse().map((comment, idx) => {
