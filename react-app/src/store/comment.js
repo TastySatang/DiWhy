@@ -24,6 +24,7 @@ export const getComments = projectId => async dispatch => {
 export const createComment = payload => async dispatch => {
   const { projectId } = payload;
 
+  console.log('before fetch to comments', payload)
   const res = await fetch(`/api/projects/${projectId}/comments`, {
     method: "POST",
     headers: {

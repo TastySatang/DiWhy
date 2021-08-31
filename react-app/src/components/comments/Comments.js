@@ -21,7 +21,7 @@ const Comments = ({ id, comments }) => {
     let payload = {
       comment,
       userId: user.id,
-      project_id: id,
+      projectId: id,
     }
 
     setComment('')
