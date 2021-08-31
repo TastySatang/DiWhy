@@ -104,3 +104,27 @@ def createStep(projectId):
         db.session.commit()
         return step.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# Getting Comments
+@project_routes.route("/<id>/comments")
+def commentsGet(id):
+    comments = Comment.query.filter(Comment.event_id == id).all()
+    return {"comments": [comment.to_dict() for comment in comments]}
+
+
+# Posting Comments
+@project_routes.route("/<id>/comments", methods=["POST"])
+def commentPost(id):
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        newComment = Comment(
+            comment=form.data["comment"], event_id=id, user_id=form.data["user_id"]
+        )
+
+        db.session.add(newComment)
+        db.session.commit()
+        return {"comments": [newComment.to_dict()]}
+    return {"errors": [form.errors]}
