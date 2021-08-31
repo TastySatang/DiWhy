@@ -49,12 +49,44 @@ const Comments = ({ id, comments }) => {
     await dispatch(deleteComment(editId))
   }
 
+  let commentForm;
+  if (user) {
+    commentForm = (
+      <div>
+        <form className='comment__form' onSubmit={handleNewSubmit}>
+          <textarea placeholder='Post a new Comment' value={comment} onChange={e => setComment(e.target.value)} />
+          <button className='comment__button' >Post</button>
+        </form>
+      </div>
+    )
+  } else {
+    commentForm = (
+      <div>
+        no user found
+      </div>
+    )
+  }
+
+
+
   return (
     <div>
-      <form className='comment__form' onSubmit={handleNewSubmit}>
-        <textarea placeholder='Post a new Comment' value={comment} onChange={e => setComment(e.target.value)} />
-        <button className='comment__button' >Post</button>
-      </form>
+      {commentForm}
+
+      {comments?.slice(0).reverse().map((comment, idx) => {
+        let content;
+        if (showEdit && comment.id === editId) {
+          content = (
+            <div>
+              <form >
+                <textarea wrap='soft' value={editComment} onChange={e => setEditComment(e.target.value)} />
+
+              </form>
+            </div>
+          )
+        }
+
+      })}
     </div>
   )
 
