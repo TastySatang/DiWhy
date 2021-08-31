@@ -21,6 +21,13 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async () => {
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -61,6 +68,9 @@ const LoginForm = () => {
         <p className='container__p login__container__p'>New to DiWhy?
           <Link className='login__container__link' to='/sign-up'>Sign Up »</Link>
         </p>
+        <p className='container__p login__container__p'>Just want to try the site?
+        </p>
+        <button type='button' onClick={demoLogin} className='form__button' to='/login'>Demo Login</button>
 
       </div >
     </div >

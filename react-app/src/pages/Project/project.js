@@ -38,7 +38,7 @@ export default function ProjectPage() {
     <article className='article'>
       {user?.id === project?.user.id && (
         <div className='editable'>
-          <Link to={`/projects/${project.id}/edit`}>
+          <Link to={`/projects/${project?.id}/edit`}>
             <button className='btn edit-btn' >Edit this post</button>
           </Link>
           <button className='btn dele-btn' onClick={handleDelete}>Un-publish</button>
