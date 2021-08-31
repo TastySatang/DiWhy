@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams, Link } from 'react-router-dom'
+import Comments from '../../components/comments/Comments'
+import { getComments } from '../../store/comment'
 import { deleteProject, getProject, getProjects } from '../../store/project'
 
 import './project.css'
@@ -11,13 +13,16 @@ export default function ProjectPage() {
   const { id } = useParams()
   const project = useSelector((state) => (state?.projects[id]))
   const user = useSelector((state) => (state.session.user))
+  const comments = useSelector((state) => Object.values(state.comments)
+    .filter(comment => comment.event_id === Number.parseInt(id)))
 
   const date = (new Date(project?.createdAt).toString().slice(4, 15)).split(' ')
   const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
 
   useEffect(() => {
     dispatch(getProject(id))
-  }, [dispatch, id])
+    dispatch(getComments(id))
+  }, [dispatch, id, user])
 
   useEffect(() => {
     dispatch(getProjects())
@@ -80,8 +85,8 @@ export default function ProjectPage() {
               </div>
             )
           })}
-
         </section>
+        <Comments id={id} comments={comments} />
       </div>
     </article>
   )

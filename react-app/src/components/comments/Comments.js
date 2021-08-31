@@ -9,7 +9,7 @@ const Comments = ({ id, comments }) => {
   const [editId, setEditId] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
   const [editComment, setEditComment] = useState('')
-  const [comment, setComment] = useState = ('')
+  const [comment, setComment] = useState('')
 
   useEffect(() => {
     dispatch(getComments(id))
@@ -80,15 +80,28 @@ const Comments = ({ id, comments }) => {
             <div>
               <form >
                 <textarea wrap='soft' value={editComment} onChange={e => setEditComment(e.target.value)} />
-
               </form>
+            </div>
+          )
+        } else {
+          content = (
+            <div>
+              <div>
+                {comment.comment}
+              </div>
             </div>
           )
         }
 
+        return (
+          <div key={idx}>
+            {content}
+          </div>
+        )
       })}
     </div>
   )
 
 }
 
+export default Comments
