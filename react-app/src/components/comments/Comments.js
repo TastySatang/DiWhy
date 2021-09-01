@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { createComment, deleteComment, getComments, updateComment } from '../../store/comment'
 
 import './comments.css'
@@ -70,9 +71,24 @@ const Comments = ({ id, comments }) => {
     )
   } else {
     commentForm = (
-      <div>
-        no user found
-      </div>
+      <form className='comment__form' onSubmit={handleNewSubmit}>
+        <div className='comment__creator'>
+          <b>
+            Not Logged in!
+          </b>
+        </div>
+        <div className='faketextarea' >
+          <Link className='comment__login' to='/login'>
+            <button className='comment__loginbtn'>
+              <b>Log in to post Comments</b>
+            </button>
+          </Link>
+        </div>
+        <div className='comment__utils'>
+          <p>We have a <b>be nice</b> policy <br></br> Please be positive and constructive</p>
+          <button className='comment__button disabled' disabled>Post</button>
+        </div>
+      </form>
     )
   }
 
@@ -108,8 +124,11 @@ const Comments = ({ id, comments }) => {
                     }} />
                     <div className='buttonsHolder'>
                       <button className='comment__button ' onClick={() => setShowEdit(false)}>Cancel</button>
-                      <button className='comment__button post' type='submit'>Post</button>
-                      <button className='comment__button delete' onClick={handleDeleteSubmit}>Delete</button>
+                      <div>
+                        {editComment && <button className='comment__button post' type='submit'>Post</button>}
+
+                        <button className='comment__button delete' onClick={handleDeleteSubmit}>Delete</button>
+                      </div>
                     </div>
                   </form>
                 </div>
