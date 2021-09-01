@@ -34,7 +34,13 @@ export default function NewProject() {
     let errors = [];
     let formIsValid = true;
 
-    // steps title
+
+    if (title.length > 300) {
+      formIsValid = false;
+      errors.push('Project title must not exceed 300 characters!')
+    }
+
+    // steps
     steps.forEach((step, index) => {
       if (!step.title) {
         formIsValid = false;
@@ -44,6 +50,16 @@ export default function NewProject() {
       if (!step.instruction) {
         formIsValid = false;
         errors.push(`Step ${index} is missing instructions`)
+      }
+
+      if (step.title.length > 300) {
+        formIsValid = false;
+        errors.push(`Step ${index} title is exceeding 300 characters!`)
+      }
+
+      if (step.instruction.length > 3000) {
+        formIsValid = false;
+        errors.push(`Step ${index} instructions are too long!`)
       }
     })
 
@@ -143,6 +159,13 @@ export default function NewProject() {
               {imgUrl && <img className='preview_image' alt='preview' src={imgUrl} />}
             </div>
             <div className='form__right'>
+              <div className='error__container'>
+                {validationErrors.map((error, index) => (
+                  <div className='errors' key={index}>
+                    {error}
+                  </div>
+                ))}
+              </div>
               <div>
                 <input className='form__text' value={title} onChange={e => setTitle(e.target.value)} type='text' placeholder='project title' required />
               </div>
