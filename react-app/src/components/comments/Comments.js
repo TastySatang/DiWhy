@@ -60,9 +60,10 @@ const Comments = ({ id, comments }) => {
             {user.username}
           </b>
         </div>
-        <textarea placeholder='Post a new Comment' value={comment} onChange={e => {
+        <textarea maxLength='500' placeholder='Post a new Comment' value={comment} onChange={e => {
           setComment(e.target.value)
         }} />
+        <p className='maxLength'>{comment.length}/{500}</p>
         <div className='comment__utils'>
           <p>We have a <b>be nice</b> policy <br></br> Please be positive and constructive</p>
           <button className='comment__button'>Post</button>
@@ -118,10 +119,16 @@ const Comments = ({ id, comments }) => {
                 </div>
                 <div className='comment__updater'>
                   <form onSubmit={handleUpdateSubmit}>
-                    <textarea wrap='soft' value={editComment} required onChange={e => {
-                      console.log(e.target.value)
-                      setEditComment(e.target.value)
-                    }} />
+                    <textarea wrap='soft'
+                      maxLength='500'
+                      value={editComment}
+                      required
+                      onChange={e => {
+                        console.log(e.target.value)
+                        setEditComment(e.target.value)
+                      }} />
+                    <p className='maxLength'>{editComment.length}/{500}</p>
+
                     <div className='buttonsHolder'>
                       <button className='comment__button ' onClick={() => setShowEdit(false)}>Cancel</button>
                       <div>
