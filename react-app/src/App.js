@@ -13,6 +13,7 @@ import ProjectPage from './pages/Project/project';
 import NewProject from './pages/New/New';
 import { authenticate } from './store/session';
 import EditProject from './pages/New/Edit';
+import Footer from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +47,7 @@ function App() {
           <h1>404 not found</h1>
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter >
   );
 }
