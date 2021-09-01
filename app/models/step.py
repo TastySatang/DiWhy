@@ -6,8 +6,8 @@ class Step(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     index = db.Column(db.Integer, nullable=False)
-    title = db.Column(db.String, nullable=False)
-    instruction = db.Column(db.String, nullable=False)
+    title = db.Column(db.String(300), nullable=False)
+    instruction = db.Column(db.String(3000), nullable=False)
     image = db.Column(db.String)
     projectId = db.Column(db.Integer, db.ForeignKey("projects.id"), nullable=False)
 

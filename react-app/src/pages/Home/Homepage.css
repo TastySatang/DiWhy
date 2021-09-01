@@ -130,6 +130,7 @@
   color: white;
   width: 200px;
   height: 40px;
+  cursor: pointer;
 }
 
 .home__reason {

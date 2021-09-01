@@ -21,10 +21,15 @@
   width: 80%;
 }
 
+.header__title {
+  word-break: break-all;
+}
+
 .step__title {
   text-align: center;
   font-size: 24px;
   margin-bottom: 15px;
+  word-break: break-all;
 }
 
 .project__image {

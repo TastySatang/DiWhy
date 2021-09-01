@@ -104,9 +104,18 @@
   border: none;
 }
 
-.step__form__right > input:focus {
+.step__form__left input:focus {
   border: 1px solid #767676;
+  border-radius: 2px;
   background-color: #FFFFFF;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 .step__form__left > img {
@@ -134,6 +143,9 @@
   width: 400px;
   resize: vertical;
   padding: 10px;
+  font-size: 14px;
+  font-family: Helvetica,Arial,sans-serif;
+  line-height: 24px;
 }
 
 .button__holder {

@@ -6,7 +6,7 @@ class Project(db.Model):
     __tablename__ = "projects"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
+    title = db.Column(db.String(300), nullable=False)
     category = db.Column(db.String)
     imgUrl = db.Column(db.String, nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)

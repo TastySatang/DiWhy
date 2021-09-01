@@ -4,9 +4,11 @@ import back from './image1.jpg'
 import bottom from './botImg.jpg'
 import robots from './robotsdiy.png'
 import './Homepage.css'
+import { useSelector } from 'react-redux';
 
 
 const HomePage = () => {
+  const user = useSelector(state => state.session.user)
 
   return (
     <div>
@@ -51,9 +53,12 @@ const HomePage = () => {
           <div className='advert__message'>
             <p className='message__description'>What are you waiting for?</p>
             <p className='message__hook'>Get out there and ruin something!</p>
-            <Link className='message__signup' to='/sign-up'>
+            {user ? <Link className='message__signup' to='/projects/new'>
               <button className='message__signup--button'>Create a DiWhy!</button>
-            </Link>
+            </Link> : <Link className='message__signup' to='/sign-up'>
+              <button className='message__signup--button'>Create a DiWhy!</button>
+            </Link>}
+
           </div>
         </div>
 
