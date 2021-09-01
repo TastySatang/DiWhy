@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createComment, deleteComment, getComments, updateComment } from '../../store/comment'
 
+import './comments.css'
 
 const Comments = ({ id, comments }) => {
   const dispatch = useDispatch()
@@ -54,11 +55,14 @@ const Comments = ({ id, comments }) => {
     commentForm = (
       <div>
         <form className='comment__form' onSubmit={handleNewSubmit}>
+          <div className='comment__creator'>
+            {user.username}
+          </div>
           <textarea placeholder='Post a new Comment' value={comment} onChange={e => {
             console.log(e.target.value)
             setComment(e.target.value)
           }} />
-          <button className='comment__button' >Post</button>
+          <button className='comment__button'>Post</button>
         </form>
       </div>
     )
@@ -74,59 +78,67 @@ const Comments = ({ id, comments }) => {
 
   return (
     <div className='comment__section'>
-      {commentForm}
+      <div className='section__wrapper'>
+        {commentForm}
 
-      {comments?.slice(0).reverse().map((comment, idx) => {
-        const date = (new Date(comment?.createdAt).toString().slice(4, 15)).split(' ')
-        const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
+        {comments?.slice(0).reverse().map((comment, idx) => {
+          const date = (new Date(comment?.createdAt).toString().slice(4, 15)).split(' ')
+          const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
 
-        let content;
-        if (showEdit && comment.id === editId) {
-          content = (
-            <div>
+          let content;
+          if (showEdit && comment.id === editId) {
+            content = (
               <div>
-                {comment.userId.username}
-                {stringedDate}
+                <div className='comment__creator'>
+                  {comment.userId.username}
+                  {stringedDate}
+                </div>
+                <div className='comment__updater'>
+                  <form onSubmit={handleUpdateSubmit}>
+                    <textarea wrap='soft' value={editComment} required onChange={e => {
+                      console.log(e.target.value)
+                      setEditComment(e.target.value)
+                    }} />
+                    <div className='buttonsHolder'>
+                      <button type='submit'>Post</button>
+                      <button className='button' onClick={() => setShowEdit(false)}>Cancel</button>
+                      <button className='button delete' onClick={handleDeleteSubmit}>Delete</button>
+                    </div>
+                  </form>
+                </div>
               </div>
-              <form onSubmit={handleUpdateSubmit}>
-                <textarea wrap='soft' value={editComment} required onChange={e => {
-                  console.log(e.target.value)
-                  setEditComment(e.target.value)
-                }} />
-                <button type='submit'>Post</button>
-                <button className='button' onClick={() => setShowEdit(false)}>Cancel</button>
-                <button className='button delete' onClick={handleDeleteSubmit}>Delete</button>
-              </form>
+            )
+          } else {
+            content = (
+              <div className='content__comment'>
+                <div className='comment__creator'>
+                  {comment.userId.username}
+                  {stringedDate}
+                </div>
+
+                <div className='comment__updater'>
+                  {comment.comment}
+                </div>
+                {comment.userId.id === user?.id && (
+                  <button onClick={() => {
+                    showEdit === false ? setShowEdit(true) : setShowEdit(false)
+                    setEditId(comment.id)
+                    setEditComment(comment.comment)
+                  }}>Edit</button>
+                )}
+              </div>
+            )
+          }
+
+          return (
+            <div className='comment__wrapper' key={idx}>
+              {content}
             </div>
           )
-        } else {
-          content = (
-            <div>
-              <div>
-                {comment.userId.username}
-                {stringedDate}
-              </div>
+        })}
 
-              <div>
-                {comment.comment}
-              </div>
-              {comment.userId.id === user?.id && (
-                <button onClick={() => {
-                  showEdit === false ? setShowEdit(true) : setShowEdit(false)
-                  setEditId(comment.id)
-                  setEditComment(comment.comment)
-                }}>Edit</button>
-              )}
-            </div>
-          )
-        }
+      </div>
 
-        return (
-          <div key={idx}>
-            {content}
-          </div>
-        )
-      })}
     </div>
   )
 
