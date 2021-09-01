@@ -91,10 +91,14 @@ const Comments = ({ id, comments }) => {
           let content;
           if (showEdit && comment.id === editId) {
             content = (
-              <div>
+              <div className='content__comment'>
                 <div className='comment__creator'>
-                  {comment.userId.username}
-                  {stringedDate}
+                  <b>
+                    {comment.userId.username}
+                  </b>
+                  <span className='comment__date'>
+                    {stringedDate}
+                  </span>
                 </div>
                 <div className='comment__updater'>
                   <form onSubmit={handleUpdateSubmit}>
@@ -103,9 +107,9 @@ const Comments = ({ id, comments }) => {
                       setEditComment(e.target.value)
                     }} />
                     <div className='buttonsHolder'>
-                      <button type='submit'>Post</button>
-                      <button className='button' onClick={() => setShowEdit(false)}>Cancel</button>
-                      <button className='button delete' onClick={handleDeleteSubmit}>Delete</button>
+                      <button className='comment__button ' onClick={() => setShowEdit(false)}>Cancel</button>
+                      <button className='comment__button post' type='submit'>Post</button>
+                      <button className='comment__button delete' onClick={handleDeleteSubmit}>Delete</button>
                     </div>
                   </form>
                 </div>
@@ -124,7 +128,9 @@ const Comments = ({ id, comments }) => {
                 </div>
 
                 <div className='comment__updater'>
-                  {comment.comment}
+                  <p>
+                    {comment.comment}
+                  </p>
                 </div>
                 {comment.userId.id === user?.id && (
                   <button className='comment__button'

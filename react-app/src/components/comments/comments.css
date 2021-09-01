@@ -60,7 +60,7 @@
   color: #999999;
 }
 
-.comment__form > textarea {
+.comment__form textarea {
   padding: 12px;
   min-width: 703px;
   max-width: 703px;
@@ -76,6 +76,22 @@
 .comment__updater {
   word-break: break-all;
   margin: 10px 0;
+  line-height: 24px;
+}
+
+.comment__updater p{
+  font-size: 16px;
+  font-family: Helvetica,Arial,sans-serif;
+  line-height: 24px;
+}
+
+.comment__updater textarea{
+  min-width: 730px;
+  min-height: 120px;
+  resize: vertical;
+  font-size: 16px;
+  font-family: Helvetica,Arial,sans-serif;
+  line-height: 24px;
 }
 
 .comment__button {
@@ -89,4 +105,5 @@
   vertical-align: middle;
   height: 40px;
   cursor: pointer;
+  margin-left: 5px;
 }
