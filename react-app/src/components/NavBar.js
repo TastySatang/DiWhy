@@ -22,14 +22,14 @@ const NavBar = () => {
   if (user) {
     auth = (
       <div className='topnavbar__right'>
-        <div className='right right__users'>
+        {/* <div className='right right__users'>
           <NavLink className='NavLink' to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </div>
         <span className='right right__pipe'>
           |
-        </span>
+        </span> */}
         <div className='right right__Logout'>
           <div className='NavLink' onClick={onLogout}>
             Logout

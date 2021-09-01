@@ -127,11 +127,12 @@ const Comments = ({ id, comments }) => {
                   {comment.comment}
                 </div>
                 {comment.userId.id === user?.id && (
-                  <button onClick={() => {
-                    showEdit === false ? setShowEdit(true) : setShowEdit(false)
-                    setEditId(comment.id)
-                    setEditComment(comment.comment)
-                  }}>Edit</button>
+                  <button className='comment__button'
+                    onClick={() => {
+                      showEdit === false ? setShowEdit(true) : setShowEdit(false)
+                      setEditId(comment.id)
+                      setEditComment(comment.comment)
+                    }}>Edit</button>
                 )}
               </div>
             )
