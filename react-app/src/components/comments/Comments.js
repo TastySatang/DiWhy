@@ -53,18 +53,20 @@ const Comments = ({ id, comments }) => {
   let commentForm;
   if (user) {
     commentForm = (
-      <div>
-        <form className='comment__form' onSubmit={handleNewSubmit}>
-          <div className='comment__creator'>
+      <form className='comment__form' onSubmit={handleNewSubmit}>
+        <div className='comment__creator'>
+          <b>
             {user.username}
-          </div>
-          <textarea placeholder='Post a new Comment' value={comment} onChange={e => {
-            console.log(e.target.value)
-            setComment(e.target.value)
-          }} />
+          </b>
+        </div>
+        <textarea placeholder='Post a new Comment' value={comment} onChange={e => {
+          setComment(e.target.value)
+        }} />
+        <div className='comment__utils'>
+          <p>We have a <b>be nice</b> policy <br></br> Please be positive and constructive</p>
           <button className='comment__button'>Post</button>
-        </form>
-      </div>
+        </div>
+      </form>
     )
   } else {
     commentForm = (
@@ -81,6 +83,7 @@ const Comments = ({ id, comments }) => {
       <div className='section__wrapper'>
         {commentForm}
 
+        <h2>{comments.length} Comments</h2>
         {comments?.slice(0).reverse().map((comment, idx) => {
           const date = (new Date(comment?.createdAt).toString().slice(4, 15)).split(' ')
           const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
@@ -112,8 +115,12 @@ const Comments = ({ id, comments }) => {
             content = (
               <div className='content__comment'>
                 <div className='comment__creator'>
-                  {comment.userId.username}
-                  {stringedDate}
+                  <b>
+                    {comment.userId.username}
+                  </b>
+                  <span className='comment__date'>
+                    {stringedDate}
+                  </span>
                 </div>
 
                 <div className='comment__updater'>
