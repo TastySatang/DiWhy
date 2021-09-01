@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../store/session';
 
 import robot from './robot.png'
@@ -9,10 +9,12 @@ import './NavBar.css'
 
 const NavBar = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const user = useSelector(state => state.session.user)
 
   const onLogout = async (e) => {
     await dispatch(logout());
+    history.push('/login')
   };
 
   let auth;

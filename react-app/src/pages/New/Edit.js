@@ -21,7 +21,6 @@ export default function EditProject() {
   useEffect(() => {
     (async () => {
       await dispatch(getProject(id))
-      setSteps(project?.steps)
     })();
   }, [dispatch, id])
 

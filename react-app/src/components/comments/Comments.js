@@ -54,7 +54,10 @@ const Comments = ({ id, comments }) => {
     commentForm = (
       <div>
         <form className='comment__form' onSubmit={handleNewSubmit}>
-          <textarea placeholder='Post a new Comment' value={comment} onChange={e => setComment(e.target.value)} />
+          <textarea placeholder='Post a new Comment' value={comment} onChange={e => {
+            console.log(e.target.value)
+            setComment(e.target.value)
+          }} />
           <button className='comment__button' >Post</button>
         </form>
       </div>
@@ -74,12 +77,25 @@ const Comments = ({ id, comments }) => {
       {commentForm}
 
       {comments?.slice(0).reverse().map((comment, idx) => {
+        const date = (new Date(comment?.createdAt).toString().slice(4, 15)).split(' ')
+        const stringedDate = (`${date[0]}, ${date[1]} ${date[2]}`)
+
         let content;
         if (showEdit && comment.id === editId) {
           content = (
             <div>
-              <form >
-                <textarea wrap='soft' value={editComment} onChange={e => setEditComment(e.target.value)} />
+              <div>
+                {comment.userId.username}
+                {stringedDate}
+              </div>
+              <form onSubmit={handleUpdateSubmit}>
+                <textarea wrap='soft' value={editComment} required onChange={e => {
+                  console.log(e.target.value)
+                  setEditComment(e.target.value)
+                }} />
+                <button type='submit'>Post</button>
+                <button className='button' onClick={() => setShowEdit(false)}>Cancel</button>
+                <button className='button delete' onClick={handleDeleteSubmit}>Delete</button>
               </form>
             </div>
           )
@@ -87,8 +103,20 @@ const Comments = ({ id, comments }) => {
           content = (
             <div>
               <div>
+                {comment.userId.username}
+                {stringedDate}
+              </div>
+
+              <div>
                 {comment.comment}
               </div>
+              {comment.userId.id === user?.id && (
+                <button onClick={() => {
+                  showEdit === false ? setShowEdit(true) : setShowEdit(false)
+                  setEditId(comment.id)
+                  setEditComment(comment.comment)
+                }}>Edit</button>
+              )}
             </div>
           )
         }
