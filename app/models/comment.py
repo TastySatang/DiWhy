@@ -19,7 +19,7 @@ class Comment(db.Model):
         return {
             "id": self.id,
             "comment": self.comment,
-            "userId": self.userId,
+            "userId": self.user.to_dict(),
             "projectId": self.projectId,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,

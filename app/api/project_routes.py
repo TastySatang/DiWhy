@@ -24,21 +24,21 @@ def health():
     return {"health": "OK"}
 
 
-# get all projects:
+# Get All Projects:
 @project_routes.route("/")
 def projectsGet():
     projects = Project.query.all()
     return {"projects": [project.to_dict() for project in projects]}
 
 
-# get one project
+# Get One Project
 @project_routes.route("/<int:id>/")
 def projectOne(id):
     project = Project.query.filter_by(id=id).one()
     return {"projects": [project.to_dict()]}
 
 
-# post project
+# Post Project
 @project_routes.route("/", methods=["POST"])
 def projectPost():
     form = ProjectForm()
@@ -57,7 +57,7 @@ def projectPost():
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
-# update project
+# Update Project
 @project_routes.route("/<int:id>", methods=["PUT"])
 def projectPut(id):
     project = Project.query.filter(Project.id == id).first()
@@ -81,7 +81,7 @@ def projectPut(id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
-# delete project
+# Delete Project
 @project_routes.route("/<int:id>", methods=["DELETE"])
 def projectDelete(id):
     project = Project.query.filter(Project.id == id).first()
@@ -90,7 +90,14 @@ def projectDelete(id):
     return {"projects": id}
 
 
-# posting step
+# Getting Steps
+@project_routes.route("/<int:projectId>/steps")
+def getStep(projectId):
+    steps = Step.query.filter(Step.projectId == projectId).all()
+    return {"steps": [step.to_dict() for step in steps]}
+
+
+# Posting Step
 @project_routes.route("/<int:projectId>/steps", methods=["POST"])
 def createStep(projectId):
     form = StepForm()
@@ -103,4 +110,28 @@ def createStep(projectId):
         db.session.add(step)
         db.session.commit()
         return step.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# Getting Comments
+@project_routes.route("/<int:id>/comments")
+def commentsGet(id):
+    comments = Comment.query.filter(Comment.projectId == id).all()
+    return {"comments": [comment.to_dict() for comment in comments]}
+
+
+# Posting Comments
+@project_routes.route("/<int:id>/comments", methods=["POST"])
+def commentPost(id):
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        newComment = Comment(
+            comment=form.data["comment"], projectId=id, userId=form.data["userId"]
+        )
+
+        db.session.add(newComment)
+        db.session.commit()
+        return {"comments": [newComment.to_dict()]}
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401

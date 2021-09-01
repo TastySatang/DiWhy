@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
 
 import signupimg from './signup.jpg'
 
@@ -19,6 +19,13 @@ const SignUpForm = () => {
     const regMail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     return regMail.test(String(mail).toLowerCase())
+  }
+
+  const demoLogin = async () => {
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
   }
 
   const onSignUp = async (e) => {
@@ -102,6 +109,9 @@ const SignUpForm = () => {
         <p className='container__p login__container__p'>Already have an account?
           <Link className='login__container__link' to='/login'>Log In »</Link>
         </p>
+        <p className='container__p login__container__p'>Just want to try the site?
+        </p>
+        <button type='button' onClick={demoLogin} className='form__button' to='/login'>Demo Login</button>
       </div>
     </div>
 
