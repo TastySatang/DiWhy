@@ -7,6 +7,8 @@
 
 .imageContent__inner {
   display: flex;
+  position: absolute;
+  top: 0;
   flex-flow: column;
   justify-content: center;
   height: 100%;
@@ -23,7 +25,10 @@
   padding-right: 40px;
   padding-left: 40px;
   padding-bottom: 40px;
+
 }
+
+
 
 .imageContent__text > h1 {
   font-size: 40px;
@@ -157,4 +162,8 @@ section p {
   width: 90px;
   border-bottom: 1px solid #D5D5D5;
   margin-bottom: 40px;
+}
+
+.NavLink.active {
+  background-color: transparent;
 }

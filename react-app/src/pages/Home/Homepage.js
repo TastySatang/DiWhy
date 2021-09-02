@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import back from './image1.jpg'
+import { Carousel } from 'react-carousel-minimal'
 import bottom from './botImg.jpg'
 import robots from './robotsdiy.png'
 import './Homepage.css'
@@ -10,20 +10,58 @@ import { useSelector } from 'react-redux';
 const HomePage = () => {
   const user = useSelector(state => state.session.user)
 
+  const data = [
+    {
+      image: "https://content.instructables.com/ORIG/F9O/RI3J/KRKN3WP1/F9ORI3JKRKN3WP1.jpg?auto=webp&width=1600",
+
+    },
+    {
+      image: "https://content.instructables.com/ORIG/FRH/ER1G/I7VQMYOI/FRHER1GI7VQMYOI.jpg?auto=webp&width=1600",
+
+    },
+    {
+      image: "https://content.instructables.com/ORIG/FPM/UNZ1/HI3TRKSZ/FPMUNZ1HI3TRKSZ.jpg?auto=webp&width=1600",
+
+    },
+    {
+      image: "https://content.instructables.com/ORIG/FG2/ZPT9/KSENBYSN/FG2ZPT9KSENBYSN.jpg?auto=webp&width=1600",
+
+    },
+    {
+      image: "https://content.instructables.com/ORIG/FZJ/69R5/KSHI84ZJ/FZJ69R5KSHI84ZJ.jpg?auto=webp&width=1600",
+
+    },
+    {
+      image: "https://content.instructables.com/ORIG/FI7/KIA5/KSHI84Q1/FI7KIA5KSHI84Q1.jpg?auto=webp&width=1600",
+
+    },
+  ];
+
+
   return (
     <div>
-      <div className='Home__imageContent' style={{ backgroundImage: `url(${back})` }}>
-        <div className='imageContent__inner'>
-          <div className='imageContent__text'>
-            <h1>
-              YOURS FOR THE MAKING
-            </h1>
-            <p>
-              Instructables is a community for people who like to make things. Come explore, share, and make your next project with us!
-            </p>
-          </div>
+
+      <Carousel className='carousel'
+        data={data}
+        automatic={true}
+        time={4000}
+        width='100%'
+        height='540px'
+        dots={true}
+        slideImageFit='cover'
+      />
+      <div className='imageContent__inner'>
+        <div className='imageContent__text'>
+          <h1>
+            YOURS FOR THE MAKING
+          </h1>
+          <p>
+            Instructables is a community for people who like to make things. Come explore, share, and make your next project with us!
+          </p>
         </div>
       </div>
+
+
       <div className='Home__textContent'>
         <div className='textContent__box'>
           <h2>Step-by-step</h2>
