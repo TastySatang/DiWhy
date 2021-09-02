@@ -40,16 +40,6 @@ const HomePage = () => {
 
   return (
     <div>
-
-      <Carousel className='carousel'
-        data={data}
-        automatic={true}
-        time={4000}
-        width='100%'
-        height='540px'
-        dots={true}
-        slideImageFit='cover'
-      />
       <div className='imageContent__inner'>
         <div className='imageContent__text'>
           <h1>
@@ -60,6 +50,17 @@ const HomePage = () => {
           </p>
         </div>
       </div>
+
+      <Carousel className='carousel'
+        data={data}
+        automatic={true}
+        time={4000}
+        width='100%'
+        height='540px'
+        dots={true}
+        slideImageFit='cover'
+      />
+
 
 
       <div className='Home__textContent'>
