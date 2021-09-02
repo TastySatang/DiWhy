@@ -12,6 +12,7 @@ const Comments = ({ id, comments }) => {
   const [showEdit, setShowEdit] = useState(false)
   const [editComment, setEditComment] = useState('')
   const [comment, setComment] = useState('')
+  const [errors, setErrors] = useState('')
 
   useEffect(() => {
     dispatch(getComments(id))
@@ -20,14 +21,20 @@ const Comments = ({ id, comments }) => {
   const handleNewSubmit = async e => {
     e.preventDefault()
 
-    let payload = {
-      comment,
-      userId: user.id,
-      projectId: id,
+    if (!comment) {
+      setErrors('Please type your comment before posting.')
     }
 
-    setComment('')
-    await dispatch(createComment(payload))
+    else {
+      let payload = {
+        comment,
+        userId: user.id,
+        projectId: id,
+      }
+
+      setComment('')
+      await dispatch(createComment(payload))
+    }
   }
 
   const handleUpdateSubmit = async e => {
@@ -63,7 +70,18 @@ const Comments = ({ id, comments }) => {
         <textarea maxLength='500' placeholder='Post a new Comment' value={comment} onChange={e => {
           setComment(e.target.value)
         }} />
-        <p className='maxLength'>{comment.length}/{500}</p>
+        <div className='form__barrel'>
+          <p className='maxLength'>{comment.length}/{500}</p>
+          <div className='error__container'>
+            {errors && (
+              <div className='errors'>
+                {errors}
+              </div>
+            )}
+
+          </div>
+        </div>
+
         <div className='comment__utils'>
           <p>We have a <b>be nice</b> policy <br></br> Please be positive and constructive</p>
           <button className='comment__button'>Post</button>

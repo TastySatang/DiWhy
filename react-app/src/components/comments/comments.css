@@ -157,4 +157,13 @@
   color: #AAAAAA;
   font-size: 13px;
   margin: 0;
+  margin-right: 10rem;
+}
+
+.form__barrel {
+  display: flex;
+}
+
+.error__container {
+  justify-self: center;
 }
