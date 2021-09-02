@@ -8,7 +8,7 @@
 .imageContent__inner {
   display: flex;
   position: relative;
-  top: 290px;
+  top: 280px;
   z-index: 3000;
   flex-flow: column;
   justify-content: center;
