@@ -11,6 +11,8 @@ Diwhy is a fullstack app that lets users share their diy projects with others.
    * React
    * Redux
    * CSS3
+
+Please check the [wiki](https://github.com/TastySatang/DiWhy/wiki) for API documentation, database schema, MVP Features list, Frontend Routes and Initial wireframes.
  
 
 [Live Website](https://diwhy.herokuapp.com/)
