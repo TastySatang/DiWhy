@@ -81,7 +81,7 @@ Diwhy is a fullstack app that lets users share their diy projects with others.
    npm start
    ```
 
-*Future Features*
+### Future Features
 
 * Search - search for projects
 * User profiles - collection of specific user's shared projects
