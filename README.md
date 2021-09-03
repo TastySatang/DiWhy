@@ -11,10 +11,35 @@ Diwhy is a fullstack app that lets users share their diy projects with others.
    * React
    * Redux
    * CSS3
+ 
 
 [Live Website](https://diwhy.herokuapp.com/)
 
-## Getting started
+## Screenshots
+
+*landing page*
+
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/Landing.png)
+
+*user authentications pages*
+
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/login.png)
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/signup.png)
+
+*browsing page*
+
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/Projects%20page.png)
+
+*new project creation*
+
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/new%20projects.png)
+
+*project details and comments page*
+
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/Project%20detaisl.png)
+![](https://github.com/TastySatang/DiWhy/blob/main/gs/Comments%20section.png)
+
+## Installing
 
 1. Clone this repository (only this branch)
 
@@ -55,4 +80,10 @@ Diwhy is a fullstack app that lets users share their diy projects with others.
    ```bash
    npm start
    ```
+
+*Future Features*
+
+* Search - search for projects
+* User profiles - collection of specific user's shared projects
+
 
