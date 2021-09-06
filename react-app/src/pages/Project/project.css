@@ -43,6 +43,7 @@
 
 .step__body {
   font-family: 'myriad-pro', helvetica, arial, sans-serif;
+  white-space: pre-line;
   font-size: 20px;
   line-height: 1.65;
   color: #555;

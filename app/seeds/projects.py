@@ -9,7 +9,7 @@ def seed_projects():
         userId=1,
     )
     two = Project(
-        title="Granma's favourite car!",
+        title="Removing bread-crumbs from cup-holdeders",
         category="",
         imgUrl="https://static.boredpanda.com/blog/wp-content/uploads/2018/02/0rDYRY3vezWwMCHUwu8v-zLG4ZX40MfMPsjdFJJh9zo-5a7d7bab1be4b__700.jpg",
         userId=1,

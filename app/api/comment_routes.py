@@ -24,9 +24,12 @@ def commentPost(id):
 @comment_routes.route("/<int:id>", methods=["DELETE"])
 def commentDelete(id):
     comment = Comment.query.filter(Comment.id == id).first()
-    db.session.delete(comment)
-    db.session.commit()
-    return {"comments": id}
+    print("inside delete comment", id, comment)
+    if comment:
+        db.session.delete(comment)
+        db.session.commit()
+        return {"comments": id}
+    return {"errors": ["Comment could not be found"]}
 
 
 @comment_routes.route("/health")

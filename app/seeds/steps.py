@@ -24,6 +24,11 @@ def seed_steps():
         projectId=1,
     )
 
+    three = Step(
+        index=0,
+        instruction="Do you want to get rid of bread-crumbs that you've sprinked on your car's cupholder for some reason?",
+    )
+
     db.session.add(zero)
     db.session.add(one)
     db.session.add(two)
