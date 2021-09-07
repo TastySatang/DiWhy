@@ -21,7 +21,9 @@ export default function ProjectsPage() {
             return (
               <div className='project-wrapper' key={idx}>
                 <Link to={`/projects/${project.id}`}>
-                  <img className='project-thumbnail' src={project.imgUrl} alt={`${project.title}`} />
+                  <div className='img-wrapper' style={{ backgroundImage: `url(${project.imgUrl})` }}>
+                    <img className='project-thumbnail' src={project.imgUrl} alt={`${project.title}`} />
+                  </div>
                 </Link>
                 <div className='project-info'>
                   <strong><Link className='project-info-title' to={`/projects/${project.id}`}>{project.title}</Link></strong>
