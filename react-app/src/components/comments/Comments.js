@@ -67,9 +67,10 @@ const Comments = ({ id, comments }) => {
             {user.username}
           </b>
         </div>
-        <textarea maxLength='500' placeholder='Post a new Comment' value={comment} onChange={e => {
-          setComment(e.target.value)
-        }} />
+        <textarea maxLength='500'
+          placeholder='Post a new Comment'
+          value={comment}
+          onChange={e => setComment(e.target.value)} />
         <div className='form__barrel'>
           <p className='maxLength'>{comment.length}/{500}</p>
           <div className='error__container'>
